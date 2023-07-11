@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 30 Agu 2021 pada 18.24
--- Versi server: 10.1.37-MariaDB
--- Versi PHP: 5.6.39
+-- Generation Time: Jul 11, 2023 at 05:06 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `spps`
+-- Database: `apkspp`
 --
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `bebas`
+-- Table structure for table `bebas`
 --
 
 CREATE TABLE `bebas` (
@@ -33,15 +32,22 @@ CREATE TABLE `bebas` (
   `student_student_id` int(11) DEFAULT NULL,
   `payment_payment_id` int(11) DEFAULT NULL,
   `bebas_bill` decimal(10,0) DEFAULT NULL,
-  `bebas_total_pay` decimal(10,0) DEFAULT '0',
+  `bebas_total_pay` decimal(10,0) DEFAULT 0,
   `bebas_input_date` timestamp NULL DEFAULT NULL,
   `bebas_last_update` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `bebas`
+--
+
+INSERT INTO `bebas` (`bebas_id`, `student_student_id`, `payment_payment_id`, `bebas_bill`, `bebas_total_pay`, `bebas_input_date`, `bebas_last_update`) VALUES
+(21, 23, 13, 50, 50, '2023-06-23 18:54:48', '2023-06-23 18:55:59');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `bebas_pay`
+-- Table structure for table `bebas_pay`
 --
 
 CREATE TABLE `bebas_pay` (
@@ -53,12 +59,19 @@ CREATE TABLE `bebas_pay` (
   `user_user_id` int(11) DEFAULT NULL,
   `bebas_pay_input_date` date DEFAULT NULL,
   `bebas_pay_last_update` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `bebas_pay`
+--
+
+INSERT INTO `bebas_pay` (`bebas_pay_id`, `bebas_bebas_id`, `bebas_pay_number`, `bebas_pay_bill`, `bebas_pay_desc`, `user_user_id`, `bebas_pay_input_date`, `bebas_pay_last_update`) VALUES
+(4, 21, '20230600005', 50, 'dp', 7, '2023-06-24', '2023-06-23 18:55:59');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `bulan`
+-- Table structure for table `bulan`
 --
 
 CREATE TABLE `bulan` (
@@ -67,67 +80,69 @@ CREATE TABLE `bulan` (
   `payment_payment_id` int(11) DEFAULT NULL,
   `month_month_id` int(11) DEFAULT NULL,
   `bulan_bill` decimal(10,0) DEFAULT NULL,
-  `bulan_status` tinyint(1) DEFAULT '0',
+  `bulan_status` tinyint(1) DEFAULT 0,
   `bulan_number_pay` varchar(100) DEFAULT NULL,
   `bulan_date_pay` date DEFAULT NULL,
   `user_user_id` int(11) DEFAULT NULL,
   `bulan_input_date` timestamp NULL DEFAULT NULL,
   `bulan_last_update` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data untuk tabel `bulan`
+-- Dumping data for table `bulan`
 --
 
 INSERT INTO `bulan` (`bulan_id`, `student_student_id`, `payment_payment_id`, `month_month_id`, `bulan_bill`, `bulan_status`, `bulan_number_pay`, `bulan_date_pay`, `user_user_id`, `bulan_input_date`, `bulan_last_update`) VALUES
-(243, 23, 12, 1, '50000', 1, '20210800033', '2021-08-30', 1, '2021-08-30 15:48:53', '2021-08-30 15:49:17'),
-(244, 23, 12, 2, '50000', 1, '20210800036', '2021-08-30', 1, '2021-08-30 15:48:53', '2021-08-30 16:23:38'),
-(245, 23, 12, 3, '50000', 1, '20210800037', '2021-08-30', 1, '2021-08-30 15:48:53', '2021-08-30 16:23:42'),
-(246, 23, 12, 4, '50000', 0, NULL, NULL, NULL, '2021-08-30 15:48:53', '2021-08-30 15:48:53'),
-(247, 23, 12, 5, '50000', 0, NULL, NULL, NULL, '2021-08-30 15:48:53', '2021-08-30 15:48:53'),
-(248, 23, 12, 6, '50000', 0, NULL, NULL, NULL, '2021-08-30 15:48:53', '2021-08-30 15:48:53'),
-(249, 23, 12, 7, '50000', 0, NULL, NULL, NULL, '2021-08-30 15:48:53', '2021-08-30 15:48:53'),
-(250, 23, 12, 8, '50000', 0, NULL, NULL, NULL, '2021-08-30 15:48:53', '2021-08-30 15:48:53'),
-(251, 23, 12, 9, '50000', 0, NULL, NULL, NULL, '2021-08-30 15:48:53', '2021-08-30 15:48:53'),
-(252, 23, 12, 10, '50000', 0, NULL, NULL, NULL, '2021-08-30 15:48:53', '2021-08-30 15:48:53'),
-(253, 23, 12, 11, '50000', 0, NULL, NULL, NULL, '2021-08-30 15:48:53', '2021-08-30 15:48:53'),
-(254, 23, 12, 12, '50000', 0, NULL, NULL, NULL, '2021-08-30 15:48:53', '2021-08-30 15:48:53');
+(243, 23, 12, 1, 50000, 1, '20210800033', '2021-08-30', NULL, '2021-08-30 15:48:53', '2021-08-30 15:49:17'),
+(244, 23, 12, 2, 50000, 1, '20210800036', '2021-08-30', NULL, '2021-08-30 15:48:53', '2021-08-30 16:23:38'),
+(245, 23, 12, 3, 50000, 1, '20210800037', '2021-08-30', NULL, '2021-08-30 15:48:53', '2021-08-30 16:23:42'),
+(246, 23, 12, 4, 50000, 1, '20230600001', '2023-06-24', 7, '2021-08-30 15:48:53', '2023-06-23 18:48:39'),
+(247, 23, 12, 5, 50000, 1, '20230600002', '2023-06-24', 7, '2021-08-30 15:48:53', '2023-06-23 18:48:43'),
+(248, 23, 12, 6, 50000, 1, '20230700006', '2023-07-03', 7, '2021-08-30 15:48:53', '2023-07-03 13:15:27'),
+(249, 23, 12, 7, 50000, 0, NULL, NULL, NULL, '2021-08-30 15:48:53', '2021-08-30 15:48:53'),
+(250, 23, 12, 8, 50000, 0, NULL, NULL, NULL, '2021-08-30 15:48:53', '2021-08-30 15:48:53'),
+(251, 23, 12, 9, 50000, 0, NULL, NULL, NULL, '2021-08-30 15:48:53', '2021-08-30 15:48:53'),
+(252, 23, 12, 10, 50000, 0, NULL, NULL, NULL, '2021-08-30 15:48:53', '2021-08-30 15:48:53'),
+(253, 23, 12, 11, 50000, 0, NULL, NULL, NULL, '2021-08-30 15:48:53', '2021-08-30 15:48:53'),
+(254, 23, 12, 12, 50000, 0, NULL, NULL, NULL, '2021-08-30 15:48:53', '2021-08-30 15:48:53');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `ci_sessions`
+-- Table structure for table `ci_sessions`
 --
 
 CREATE TABLE `ci_sessions` (
   `id` varchar(40) NOT NULL,
   `ip_address` varchar(45) NOT NULL,
-  `timestamp` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `timestamp` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `data` blob NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `class`
+-- Table structure for table `class`
 --
 
 CREATE TABLE `class` (
   `class_id` int(11) NOT NULL,
   `class_name` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data untuk tabel `class`
+-- Dumping data for table `class`
 --
 
 INSERT INTO `class` (`class_id`, `class_name`) VALUES
-(4, 'X');
+(4, 'X'),
+(5, 'XI'),
+(6, 'XII');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `debit`
+-- Table structure for table `debit`
 --
 
 CREATE TABLE `debit` (
@@ -138,12 +153,12 @@ CREATE TABLE `debit` (
   `user_user_id` int(11) DEFAULT NULL,
   `debit_input_date` timestamp NULL DEFAULT NULL,
   `debit_last_update` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `holiday`
+-- Table structure for table `holiday`
 --
 
 CREATE TABLE `holiday` (
@@ -151,29 +166,29 @@ CREATE TABLE `holiday` (
   `year` year(4) DEFAULT NULL,
   `date` date DEFAULT NULL,
   `info` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `information`
+-- Table structure for table `information`
 --
 
 CREATE TABLE `information` (
   `information_id` int(11) NOT NULL,
   `information_title` varchar(100) DEFAULT NULL,
-  `information_desc` text,
+  `information_desc` text DEFAULT NULL,
   `information_img` varchar(255) DEFAULT NULL,
-  `information_publish` tinyint(1) DEFAULT '0',
+  `information_publish` tinyint(1) DEFAULT 0,
   `user_user_id` int(11) DEFAULT NULL,
   `information_input_date` timestamp NULL DEFAULT NULL,
   `information_last_update` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kredit`
+-- Table structure for table `kredit`
 --
 
 CREATE TABLE `kredit` (
@@ -184,12 +199,12 @@ CREATE TABLE `kredit` (
   `user_user_id` int(11) DEFAULT NULL,
   `kredit_input_date` timestamp NULL DEFAULT NULL,
   `kredit_last_update` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `letter`
+-- Table structure for table `letter`
 --
 
 CREATE TABLE `letter` (
@@ -197,30 +212,36 @@ CREATE TABLE `letter` (
   `letter_number` varchar(100) DEFAULT NULL,
   `letter_month` int(11) DEFAULT NULL,
   `letter_year` year(4) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data untuk tabel `letter`
+-- Dumping data for table `letter`
 --
 
 INSERT INTO `letter` (`letter_id`, `letter_number`, `letter_month`, `letter_year`) VALUES
-(29, '00026', 8, 2021),
-(30, '00027', 8, 2021),
-(31, '00028', 8, 2021),
-(32, '00029', 8, 2021),
-(33, '00030', 8, 2021),
-(34, '00031', 8, 2021),
-(35, '00032', 8, 2021),
-(36, '00033', 8, 2021),
-(37, '00034', 8, 2021),
-(38, '00035', 8, 2021),
-(39, '00036', 8, 2021),
-(40, '00037', 8, 2021);
+(29, '00026', 8, '2021'),
+(30, '00027', 8, '2021'),
+(31, '00028', 8, '2021'),
+(32, '00029', 8, '2021'),
+(33, '00030', 8, '2021'),
+(34, '00031', 8, '2021'),
+(35, '00032', 8, '2021'),
+(36, '00033', 8, '2021'),
+(37, '00034', 8, '2021'),
+(38, '00035', 8, '2021'),
+(39, '00036', 8, '2021'),
+(40, '00037', 8, '2021'),
+(41, '00001', 6, '2023'),
+(42, '00002', 6, '2023'),
+(43, '00003', 6, '2023'),
+(44, '00004', 6, '2023'),
+(45, '00005', 6, '2023'),
+(46, '00006', 7, '2023');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `logs`
+-- Table structure for table `logs`
 --
 
 CREATE TABLE `logs` (
@@ -228,23 +249,47 @@ CREATE TABLE `logs` (
   `log_date` timestamp NULL DEFAULT NULL,
   `log_action` varchar(45) DEFAULT NULL,
   `log_module` varchar(45) DEFAULT NULL,
-  `log_info` text,
+  `log_info` text DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data untuk tabel `logs`
+-- Dumping data for table `logs`
 --
 
 INSERT INTO `logs` (`log_id`, `log_date`, `log_action`, `log_module`, `log_info`, `user_id`) VALUES
 (61, '2021-08-30 15:46:11', 'Tambah', 'Tahun Ajaran', 'ID:null;Title:2021/2022', NULL),
-(62, '2021-08-30 15:47:29', 'Tambah', 'Student', 'ID:23;Name:DENI KURNIAWAN', 1),
-(63, '2021-08-30 15:48:19', 'Tambah', 'Jenis Pembayaran', 'ID:null;Title:', NULL);
+(62, '2021-08-30 15:47:29', 'Tambah', 'Student', 'ID:23;Name:DENI KURNIAWAN', NULL),
+(63, '2021-08-30 15:48:19', 'Tambah', 'Jenis Pembayaran', 'ID:null;Title:', NULL),
+(64, '2023-06-23 17:16:41', 'Sunting', 'user', 'ID:3;Name:TATA USAHA', NULL),
+(65, '2023-06-23 17:16:52', 'Hapus', 'user', 'ID:3;Title:TATA USAHA', NULL),
+(66, '2023-06-23 17:16:55', 'Hapus', 'user', 'ID:2;Title:User', NULL),
+(67, '2023-06-23 17:18:34', 'Tambah', 'user', 'ID:4;Name:TATA USAHA', NULL),
+(68, '2023-06-23 17:19:16', 'Tambah', 'user', 'ID:5;Name:Admin', NULL),
+(69, '2023-06-23 17:20:07', 'Tambah', 'user', 'ID:6;Name:OrangTuaSIswa', NULL),
+(70, '2023-06-23 17:21:07', 'Hapus', 'user', 'ID:6;Title:OrangTuaSIswa', NULL),
+(71, '2023-06-23 17:21:09', 'Hapus', 'user', 'ID:5;Title:Admin', NULL),
+(72, '2023-06-23 17:21:12', 'Hapus', 'user', 'ID:4;Title:TATA USAHA', NULL),
+(73, '2023-06-23 17:22:02', 'Tambah', 'user', 'ID:7;Name:Admin Master', NULL),
+(74, '2023-06-23 17:22:56', 'Tambah', 'user', 'ID:8;Name:OrangTuaSIswa', NULL),
+(75, '2023-06-23 17:23:32', 'Tambah', 'user', 'ID:9;Name:Petugas TU', NULL),
+(76, '2023-06-23 17:23:51', 'Hapus', 'user', 'ID:1;Title:Petugas', 7),
+(77, '2023-06-23 18:46:59', 'Tambah', 'Jenis Pembayaran', 'ID:null;Title:', NULL),
+(78, '2023-06-23 18:47:50', 'Tambah', 'Tahun Ajaran', 'ID:null;Title:2022/2023', NULL),
+(79, '2023-06-23 18:48:00', 'Tambah', 'Tahun Ajaran', 'ID:null;Title:2023/2024', NULL),
+(80, '2023-06-23 23:35:15', 'Sunting', 'user', 'ID:9;Name:Petugas TU', 7),
+(81, '2023-06-23 23:35:41', 'Sunting', 'user', 'ID:8;Name:OrangTuaSIswa', 7),
+(82, '2023-06-23 23:36:05', 'Sunting', 'user', 'ID:7;Name:Admin Master', 7),
+(83, '2023-06-24 00:07:16', 'Sunting', 'user', 'ID:7;Name:Admin Master', 7),
+(84, '2023-07-03 12:26:25', 'Hapus', 'user', 'ID:9;Title:Petugas TU', 7),
+(85, '2023-07-03 12:27:32', 'Hapus', 'user', 'ID:8;Title:OrangTuaSIswa', 7),
+(86, '2023-07-04 14:02:14', 'Sunting', 'user', 'ID:10;Name:Petugas@tu.com', 7),
+(87, '2023-07-10 10:07:13', 'Tambah', 'user', 'ID:12;Name:Kepala Yayasan', 7);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `log_trx`
+-- Table structure for table `log_trx`
 --
 
 CREATE TABLE `log_trx` (
@@ -254,31 +299,35 @@ CREATE TABLE `log_trx` (
   `bebas_pay_bebas_pay_id` int(11) DEFAULT NULL,
   `log_trx_input_date` timestamp NULL DEFAULT NULL,
   `log_trx_last_update` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data untuk tabel `log_trx`
+-- Dumping data for table `log_trx`
 --
 
 INSERT INTO `log_trx` (`log_trx_id`, `student_student_id`, `bulan_bulan_id`, `bebas_pay_bebas_pay_id`, `log_trx_input_date`, `log_trx_last_update`) VALUES
 (12, 23, 243, NULL, '2021-08-30 15:49:17', '2021-08-30 15:49:17'),
 (15, 23, 244, NULL, '2021-08-30 16:23:38', '2021-08-30 16:23:38'),
-(16, 23, 245, NULL, '2021-08-30 16:23:42', '2021-08-30 16:23:42');
+(16, 23, 245, NULL, '2021-08-30 16:23:42', '2021-08-30 16:23:42'),
+(17, 23, 246, NULL, '2023-06-23 18:48:39', '2023-06-23 18:48:39'),
+(18, 23, 247, NULL, '2023-06-23 18:48:43', '2023-06-23 18:48:43'),
+(20, 23, NULL, 4, '2023-06-23 18:55:59', '2023-06-23 18:55:59'),
+(21, 23, 248, NULL, '2023-07-03 13:15:27', '2023-07-03 13:15:27');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `majors`
+-- Table structure for table `majors`
 --
 
 CREATE TABLE `majors` (
   `majors_id` int(11) NOT NULL,
   `majors_name` varchar(100) DEFAULT NULL,
   `majors_short_name` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data untuk tabel `majors`
+-- Dumping data for table `majors`
 --
 
 INSERT INTO `majors` (`majors_id`, `majors_name`, `majors_short_name`) VALUES
@@ -294,16 +343,16 @@ INSERT INTO `majors` (`majors_id`, `majors_name`, `majors_short_name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `month`
+-- Table structure for table `month`
 --
 
 CREATE TABLE `month` (
   `month_id` int(11) NOT NULL,
   `month_name` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data untuk tabel `month`
+-- Dumping data for table `month`
 --
 
 INSERT INTO `month` (`month_id`, `month_name`) VALUES
@@ -323,7 +372,7 @@ INSERT INTO `month` (`month_id`, `month_name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `payment`
+-- Table structure for table `payment`
 --
 
 CREATE TABLE `payment` (
@@ -333,69 +382,75 @@ CREATE TABLE `payment` (
   `pos_pos_id` int(11) DEFAULT NULL,
   `payment_input_date` timestamp NULL DEFAULT NULL,
   `payment_last_update` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data untuk tabel `payment`
+-- Dumping data for table `payment`
 --
 
 INSERT INTO `payment` (`payment_id`, `payment_type`, `period_period_id`, `pos_pos_id`, `payment_input_date`, `payment_last_update`) VALUES
-(12, 'BULAN', 5, 6, '2021-08-30 15:48:19', '2021-08-30 15:48:19');
+(12, 'BULAN', 5, 6, '2021-08-30 15:48:19', '2021-08-30 15:48:19'),
+(13, 'BEBAS', 5, 9, '2023-06-23 18:46:59', '2023-06-23 18:46:59');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `period`
+-- Table structure for table `period`
 --
 
 CREATE TABLE `period` (
   `period_id` int(11) NOT NULL,
   `period_start` year(4) DEFAULT NULL,
   `period_end` year(4) DEFAULT NULL,
-  `period_status` tinyint(1) DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `period_status` tinyint(1) DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data untuk tabel `period`
+-- Dumping data for table `period`
 --
 
 INSERT INTO `period` (`period_id`, `period_start`, `period_end`, `period_status`) VALUES
-(5, 2021, 2022, 0);
+(5, '2021', '2022', 0),
+(6, '2022', '2023', 1),
+(7, '2023', '2024', 0);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pos`
+-- Table structure for table `pos`
 --
 
 CREATE TABLE `pos` (
   `pos_id` int(11) NOT NULL,
   `pos_name` varchar(100) DEFAULT NULL,
   `pos_description` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data untuk tabel `pos`
+-- Dumping data for table `pos`
 --
 
 INSERT INTO `pos` (`pos_id`, `pos_name`, `pos_description`) VALUES
-(6, 'INFAQ', 'SUMBANGAN INFAQ BULANAN');
+(6, 'INFAQ', 'SUMBANGAN INFAQ BULANAN'),
+(7, 'SPP', 'Biaya gedung'),
+(8, 'SPP', 'Bulanan'),
+(9, 'Excull', 'Basket');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `setting`
+-- Table structure for table `setting`
 --
 
 CREATE TABLE `setting` (
   `setting_id` int(11) NOT NULL,
   `setting_name` varchar(255) DEFAULT NULL,
-  `setting_value` text,
+  `setting_value` text DEFAULT NULL,
   `setting_last_update` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data untuk tabel `setting`
+-- Dumping data for table `setting`
 --
 
 INSERT INTO `setting` (`setting_id`, `setting_name`, `setting_value`, `setting_last_update`) VALUES
@@ -413,7 +468,7 @@ INSERT INTO `setting` (`setting_id`, `setting_name`, `setting_value`, `setting_l
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `student`
+-- Table structure for table `student`
 --
 
 CREATE TABLE `student` (
@@ -428,28 +483,28 @@ CREATE TABLE `student` (
   `student_img` varchar(255) DEFAULT NULL,
   `student_phone` varchar(45) DEFAULT NULL,
   `student_hobby` varchar(100) DEFAULT NULL,
-  `student_address` text,
+  `student_address` text DEFAULT NULL,
   `student_name_of_mother` varchar(255) DEFAULT NULL,
   `student_name_of_father` varchar(255) DEFAULT NULL,
   `student_parent_phone` varchar(45) DEFAULT NULL,
   `class_class_id` int(11) DEFAULT NULL,
   `majors_majors_id` int(11) DEFAULT NULL,
-  `student_status` tinyint(1) DEFAULT '1',
+  `student_status` tinyint(1) DEFAULT 1,
   `student_input_date` timestamp NULL DEFAULT NULL,
   `student_last_update` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data untuk tabel `student`
+-- Dumping data for table `student`
 --
 
 INSERT INTO `student` (`student_id`, `student_nis`, `student_nisn`, `student_password`, `student_full_name`, `student_gender`, `student_born_place`, `student_born_date`, `student_img`, `student_phone`, `student_hobby`, `student_address`, `student_name_of_mother`, `student_name_of_father`, `student_parent_phone`, `class_class_id`, `majors_majors_id`, `student_status`, `student_input_date`, `student_last_update`) VALUES
-(23, '123456789', '123456789', 'f7c3bc1d808e04732adf679965ccc34ca7ae3441', 'DENI KURNIAWAN', 'L', 'WATES', '2021-08-30', NULL, '-', '-', '-', '-', '-', '-', 4, 1, 1, '2021-08-30 15:47:29', '2021-08-30 15:47:29');
+(23, '123456789', '123456789', 'f7c3bc1d808e04732adf679965ccc34ca7ae3441', 'DENI KURNIAWAN', 'L', 'WATES', '2021-08-30', NULL, '-', '-', '-', '-', '-', '-', 5, 1, 1, '2021-08-30 15:47:29', '2023-06-23 18:50:43');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -458,35 +513,36 @@ CREATE TABLE `users` (
   `user_password` varchar(45) DEFAULT NULL,
   `user_full_name` varchar(255) DEFAULT NULL,
   `user_image` varchar(255) DEFAULT NULL,
-  `user_description` text,
+  `user_description` text DEFAULT NULL,
   `user_role_role_id` int(11) DEFAULT NULL,
-  `user_is_deleted` tinyint(1) DEFAULT '0',
+  `user_is_deleted` tinyint(1) DEFAULT 0,
   `user_input_date` timestamp NULL DEFAULT NULL,
-  `user_last_update` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `user_last_update` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Dumping data untuk tabel `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`user_id`, `user_email`, `user_password`, `user_full_name`, `user_image`, `user_description`, `user_role_role_id`, `user_is_deleted`, `user_input_date`, `user_last_update`) VALUES
-(1, 'pt@gmail.com', '53c3db8a637e9880eb416771e32ec3ea1fd48421', 'Petugas', NULL, 'Petugas', 1, 0, '2021-08-27 03:19:33', '2021-08-30 15:17:31'),
-(2, 'us@gmail.com', 'f5a216dbd4c802dc3a7047c3c5039caff31f045f', 'User', NULL, 'User', 2, 0, '2021-08-27 07:49:06', '2021-08-30 15:17:57'),
-(3, 'bd@gmail.com', '3fa883e4117d454e5ff1330b67268571096da690', 'Bendahara', NULL, 'Bendahara', 3, 0, '2021-08-27 09:46:56', '2021-08-30 15:18:02');
+(7, 'Admin@master.com', 'd5cea670c927a04ca0b4d5ea5ddf9d3e1a7f0ba4', 'Admin Master', 'Admin_Master2.png', 'Admin Master Akses', 1, 0, '2023-06-23 17:22:02', '2023-06-24 00:07:16'),
+(10, 'Petugas@tu.com', 'b47fc85c8854d3f99318a65e35cfb5e858c9f636', 'Petugas@tu.com', NULL, '', 2, 0, '2023-07-03 12:27:22', '2023-07-04 14:02:42'),
+(11, 'Orangtua@siswa.com', 'f94c0957350fd4be620dd343037090a6e39a3791', 'Orangtua@siswa.com', NULL, '', 3, 0, '2023-07-03 12:27:52', '2023-07-03 12:27:52'),
+(12, 'Admin@yayasan.com', 'ab5ceba0b58fd5d85e61b274269745adf4b9c374', 'Kepala Yayasan', 'Kepala_Yayasan.png', '', 2, 0, '2023-07-10 10:07:13', '2023-07-10 10:07:13');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user_roles`
+-- Table structure for table `user_roles`
 --
 
 CREATE TABLE `user_roles` (
   `role_id` int(11) NOT NULL,
   `role_name` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data untuk tabel `user_roles`
+-- Dumping data for table `user_roles`
 --
 
 INSERT INTO `user_roles` (`role_id`, `role_name`) VALUES
@@ -499,7 +555,7 @@ INSERT INTO `user_roles` (`role_id`, `role_name`) VALUES
 --
 
 --
--- Indeks untuk tabel `bebas`
+-- Indexes for table `bebas`
 --
 ALTER TABLE `bebas`
   ADD PRIMARY KEY (`bebas_id`),
@@ -507,7 +563,7 @@ ALTER TABLE `bebas`
   ADD KEY `fk_bebas_student1_idx` (`student_student_id`);
 
 --
--- Indeks untuk tabel `bebas_pay`
+-- Indexes for table `bebas_pay`
 --
 ALTER TABLE `bebas_pay`
   ADD PRIMARY KEY (`bebas_pay_id`),
@@ -515,7 +571,7 @@ ALTER TABLE `bebas_pay`
   ADD KEY `fk_bebas_pay_users1_idx` (`user_user_id`);
 
 --
--- Indeks untuk tabel `bulan`
+-- Indexes for table `bulan`
 --
 ALTER TABLE `bulan`
   ADD PRIMARY KEY (`bulan_id`),
@@ -525,60 +581,60 @@ ALTER TABLE `bulan`
   ADD KEY `fk_bulan_users1_idx` (`user_user_id`);
 
 --
--- Indeks untuk tabel `ci_sessions`
+-- Indexes for table `ci_sessions`
 --
 ALTER TABLE `ci_sessions`
   ADD PRIMARY KEY (`id`),
   ADD KEY `ci_sessions_timestamp` (`timestamp`);
 
 --
--- Indeks untuk tabel `class`
+-- Indexes for table `class`
 --
 ALTER TABLE `class`
   ADD PRIMARY KEY (`class_id`);
 
 --
--- Indeks untuk tabel `debit`
+-- Indexes for table `debit`
 --
 ALTER TABLE `debit`
   ADD PRIMARY KEY (`debit_id`),
   ADD KEY `fk_jurnal_debit_users1_idx` (`user_user_id`);
 
 --
--- Indeks untuk tabel `holiday`
+-- Indexes for table `holiday`
 --
 ALTER TABLE `holiday`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `information`
+-- Indexes for table `information`
 --
 ALTER TABLE `information`
   ADD PRIMARY KEY (`information_id`),
   ADD KEY `fk_information_users1_idx` (`user_user_id`);
 
 --
--- Indeks untuk tabel `kredit`
+-- Indexes for table `kredit`
 --
 ALTER TABLE `kredit`
   ADD PRIMARY KEY (`kredit_id`),
   ADD KEY `fk_jurnal_kredit_users1_idx` (`user_user_id`);
 
 --
--- Indeks untuk tabel `letter`
+-- Indexes for table `letter`
 --
 ALTER TABLE `letter`
   ADD PRIMARY KEY (`letter_id`);
 
 --
--- Indeks untuk tabel `logs`
+-- Indexes for table `logs`
 --
 ALTER TABLE `logs`
   ADD PRIMARY KEY (`log_id`),
   ADD KEY `fk_g_activity_log_g_user1_idx` (`user_id`);
 
 --
--- Indeks untuk tabel `log_trx`
+-- Indexes for table `log_trx`
 --
 ALTER TABLE `log_trx`
   ADD PRIMARY KEY (`log_trx_id`),
@@ -587,19 +643,19 @@ ALTER TABLE `log_trx`
   ADD KEY `fk_log_trx_student1_idx` (`student_student_id`);
 
 --
--- Indeks untuk tabel `majors`
+-- Indexes for table `majors`
 --
 ALTER TABLE `majors`
   ADD PRIMARY KEY (`majors_id`);
 
 --
--- Indeks untuk tabel `month`
+-- Indexes for table `month`
 --
 ALTER TABLE `month`
   ADD PRIMARY KEY (`month_id`);
 
 --
--- Indeks untuk tabel `payment`
+-- Indexes for table `payment`
 --
 ALTER TABLE `payment`
   ADD PRIMARY KEY (`payment_id`),
@@ -607,25 +663,25 @@ ALTER TABLE `payment`
   ADD KEY `fk_payment_period1_idx` (`period_period_id`);
 
 --
--- Indeks untuk tabel `period`
+-- Indexes for table `period`
 --
 ALTER TABLE `period`
   ADD PRIMARY KEY (`period_id`);
 
 --
--- Indeks untuk tabel `pos`
+-- Indexes for table `pos`
 --
 ALTER TABLE `pos`
   ADD PRIMARY KEY (`pos_id`);
 
 --
--- Indeks untuk tabel `setting`
+-- Indexes for table `setting`
 --
 ALTER TABLE `setting`
   ADD PRIMARY KEY (`setting_id`);
 
 --
--- Indeks untuk tabel `student`
+-- Indexes for table `student`
 --
 ALTER TABLE `student`
   ADD PRIMARY KEY (`student_id`),
@@ -633,162 +689,162 @@ ALTER TABLE `student`
   ADD KEY `fk_student_majors1_idx` (`majors_majors_id`);
 
 --
--- Indeks untuk tabel `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`user_id`),
   ADD KEY `fk_user_user_role1_idx` (`user_role_role_id`);
 
 --
--- Indeks untuk tabel `user_roles`
+-- Indexes for table `user_roles`
 --
 ALTER TABLE `user_roles`
   ADD PRIMARY KEY (`role_id`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `bebas`
+-- AUTO_INCREMENT for table `bebas`
 --
 ALTER TABLE `bebas`
-  MODIFY `bebas_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `bebas_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
--- AUTO_INCREMENT untuk tabel `bebas_pay`
+-- AUTO_INCREMENT for table `bebas_pay`
 --
 ALTER TABLE `bebas_pay`
-  MODIFY `bebas_pay_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `bebas_pay_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT untuk tabel `bulan`
+-- AUTO_INCREMENT for table `bulan`
 --
 ALTER TABLE `bulan`
   MODIFY `bulan_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=255;
 
 --
--- AUTO_INCREMENT untuk tabel `class`
+-- AUTO_INCREMENT for table `class`
 --
 ALTER TABLE `class`
-  MODIFY `class_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `class_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT untuk tabel `debit`
+-- AUTO_INCREMENT for table `debit`
 --
 ALTER TABLE `debit`
   MODIFY `debit_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT untuk tabel `holiday`
+-- AUTO_INCREMENT for table `holiday`
 --
 ALTER TABLE `holiday`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `information`
+-- AUTO_INCREMENT for table `information`
 --
 ALTER TABLE `information`
   MODIFY `information_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `kredit`
+-- AUTO_INCREMENT for table `kredit`
 --
 ALTER TABLE `kredit`
   MODIFY `kredit_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT untuk tabel `letter`
+-- AUTO_INCREMENT for table `letter`
 --
 ALTER TABLE `letter`
-  MODIFY `letter_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `letter_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
--- AUTO_INCREMENT untuk tabel `logs`
+-- AUTO_INCREMENT for table `logs`
 --
 ALTER TABLE `logs`
-  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
 
 --
--- AUTO_INCREMENT untuk tabel `log_trx`
+-- AUTO_INCREMENT for table `log_trx`
 --
 ALTER TABLE `log_trx`
-  MODIFY `log_trx_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `log_trx_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
--- AUTO_INCREMENT untuk tabel `majors`
+-- AUTO_INCREMENT for table `majors`
 --
 ALTER TABLE `majors`
   MODIFY `majors_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT untuk tabel `month`
+-- AUTO_INCREMENT for table `month`
 --
 ALTER TABLE `month`
   MODIFY `month_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT untuk tabel `payment`
+-- AUTO_INCREMENT for table `payment`
 --
 ALTER TABLE `payment`
-  MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- AUTO_INCREMENT untuk tabel `period`
+-- AUTO_INCREMENT for table `period`
 --
 ALTER TABLE `period`
-  MODIFY `period_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `period_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT untuk tabel `pos`
+-- AUTO_INCREMENT for table `pos`
 --
 ALTER TABLE `pos`
-  MODIFY `pos_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `pos_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT untuk tabel `setting`
+-- AUTO_INCREMENT for table `setting`
 --
 ALTER TABLE `setting`
   MODIFY `setting_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT untuk tabel `student`
+-- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
   MODIFY `student_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
--- AUTO_INCREMENT untuk tabel `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT untuk tabel `user_roles`
+-- AUTO_INCREMENT for table `user_roles`
 --
 ALTER TABLE `user_roles`
   MODIFY `role_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- Constraints for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `bebas`
+-- Constraints for table `bebas`
 --
 ALTER TABLE `bebas`
   ADD CONSTRAINT `fk_bebas_payment1` FOREIGN KEY (`payment_payment_id`) REFERENCES `payment` (`payment_id`) ON DELETE SET NULL ON UPDATE SET NULL,
   ADD CONSTRAINT `fk_bebas_student1` FOREIGN KEY (`student_student_id`) REFERENCES `student` (`student_id`) ON DELETE SET NULL ON UPDATE SET NULL;
 
 --
--- Ketidakleluasaan untuk tabel `bebas_pay`
+-- Constraints for table `bebas_pay`
 --
 ALTER TABLE `bebas_pay`
   ADD CONSTRAINT `fk_bebas_pay_bebas1` FOREIGN KEY (`bebas_bebas_id`) REFERENCES `bebas` (`bebas_id`) ON DELETE SET NULL ON UPDATE SET NULL,
   ADD CONSTRAINT `fk_bebas_pay_users1` FOREIGN KEY (`user_user_id`) REFERENCES `users` (`user_id`) ON DELETE SET NULL ON UPDATE SET NULL;
 
 --
--- Ketidakleluasaan untuk tabel `bulan`
+-- Constraints for table `bulan`
 --
 ALTER TABLE `bulan`
   ADD CONSTRAINT `fk_bulan_month1` FOREIGN KEY (`month_month_id`) REFERENCES `month` (`month_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
@@ -797,31 +853,31 @@ ALTER TABLE `bulan`
   ADD CONSTRAINT `fk_bulan_users1` FOREIGN KEY (`user_user_id`) REFERENCES `users` (`user_id`) ON DELETE SET NULL ON UPDATE SET NULL;
 
 --
--- Ketidakleluasaan untuk tabel `debit`
+-- Constraints for table `debit`
 --
 ALTER TABLE `debit`
   ADD CONSTRAINT `fk_jurnal_debit_users1` FOREIGN KEY (`user_user_id`) REFERENCES `users` (`user_id`) ON DELETE SET NULL ON UPDATE SET NULL;
 
 --
--- Ketidakleluasaan untuk tabel `information`
+-- Constraints for table `information`
 --
 ALTER TABLE `information`
   ADD CONSTRAINT `fk_information_users1` FOREIGN KEY (`user_user_id`) REFERENCES `users` (`user_id`) ON DELETE SET NULL ON UPDATE SET NULL;
 
 --
--- Ketidakleluasaan untuk tabel `kredit`
+-- Constraints for table `kredit`
 --
 ALTER TABLE `kredit`
   ADD CONSTRAINT `fk_jurnal_kredit_users1` FOREIGN KEY (`user_user_id`) REFERENCES `users` (`user_id`) ON DELETE SET NULL ON UPDATE SET NULL;
 
 --
--- Ketidakleluasaan untuk tabel `logs`
+-- Constraints for table `logs`
 --
 ALTER TABLE `logs`
   ADD CONSTRAINT `fk_g_activity_log_g_user1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE SET NULL ON UPDATE SET NULL;
 
 --
--- Ketidakleluasaan untuk tabel `log_trx`
+-- Constraints for table `log_trx`
 --
 ALTER TABLE `log_trx`
   ADD CONSTRAINT `fk_log_trx_bebas_pay1` FOREIGN KEY (`bebas_pay_bebas_pay_id`) REFERENCES `bebas_pay` (`bebas_pay_id`) ON DELETE SET NULL ON UPDATE SET NULL,
@@ -829,21 +885,21 @@ ALTER TABLE `log_trx`
   ADD CONSTRAINT `fk_log_trx_student1` FOREIGN KEY (`student_student_id`) REFERENCES `student` (`student_id`) ON DELETE SET NULL ON UPDATE SET NULL;
 
 --
--- Ketidakleluasaan untuk tabel `payment`
+-- Constraints for table `payment`
 --
 ALTER TABLE `payment`
   ADD CONSTRAINT `fk_payment_period1` FOREIGN KEY (`period_period_id`) REFERENCES `period` (`period_id`) ON DELETE SET NULL ON UPDATE SET NULL,
   ADD CONSTRAINT `fk_payment_pos1` FOREIGN KEY (`pos_pos_id`) REFERENCES `pos` (`pos_id`) ON DELETE SET NULL ON UPDATE SET NULL;
 
 --
--- Ketidakleluasaan untuk tabel `student`
+-- Constraints for table `student`
 --
 ALTER TABLE `student`
   ADD CONSTRAINT `fk_student_class1` FOREIGN KEY (`class_class_id`) REFERENCES `class` (`class_id`) ON DELETE SET NULL ON UPDATE SET NULL,
   ADD CONSTRAINT `fk_student_majors1` FOREIGN KEY (`majors_majors_id`) REFERENCES `majors` (`majors_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Ketidakleluasaan untuk tabel `users`
+-- Constraints for table `users`
 --
 ALTER TABLE `users`
   ADD CONSTRAINT `fk_user_user_role1` FOREIGN KEY (`user_role_role_id`) REFERENCES `user_roles` (`role_id`) ON DELETE SET NULL ON UPDATE SET NULL;
