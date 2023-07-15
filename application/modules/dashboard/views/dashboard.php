@@ -85,11 +85,11 @@
           </div>
           <?php if ($this->session->userdata('uroleid') <> 3) { ?>
           <a href="<?php echo site_url('manage/dashboard/edit/') ?>" class="btn btn-success"><i class="fa fa-edit"></i> <b>Edit</b></a>
-          <?php } ?>
-          <?php if ($tglex > 0) { ?>
-            <span class="label label-success">Pengumuman Aktif</span>
-          <?php } else { ?>
-            <span class="label label-danger">Pengumuman Kadaluarsa</span>
+              <?php if ($tglex > 0) { ?>
+                <span class="label label-success">Pengumuman Aktif</span>
+              <?php } else { ?>
+                <span class="label label-danger">Pengumuman Kadaluarsa</span>
+              <?php } ?>
           <?php } ?>
           <br>
       </div>
