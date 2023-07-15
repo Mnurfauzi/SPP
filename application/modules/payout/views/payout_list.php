@@ -205,7 +205,7 @@
 							</div>
 						</div>
 					</div>
-					<?php if ($this->session->userdata('uroleid') <> BENDAHARA) { ?>
+					<?php if ($this->session->userdata('uroleid') <> USER) { ?>
 						<!-- List Tagihan Bulanan -->
 						<div class="box box-success">
 							<div class="box-header with-border">
