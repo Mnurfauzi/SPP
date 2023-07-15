@@ -9,12 +9,14 @@
           </a>
         </li>
 
-        <li class="<?php echo ($this->uri->segment(2) == 'payout') ? 'active' : '' ?>">
-          <a href="<?php echo site_url('manage/payout'); ?>">
-            <i class="fa fa-google-wallet"></i> <span>TRANSAKSI SISWA</span>
-            <span class="pull-right-container"></span>
-          </a>
-        </li>
+        <?php if ($this->session->userdata('uroleid') <> YAYASAN) { ?>
+          <li class="<?php echo ($this->uri->segment(2) == 'payout') ? 'active' : '' ?>">
+            <a href="<?php echo site_url('manage/payout'); ?>">
+              <i class="fa fa-google-wallet"></i> <span>TRANSAKSI SISWA</span>
+              <span class="pull-right-container"></span>
+            </a>
+          </li>
+        <?php } ?>
 
         <?php if ($this->session->userdata('uroleid') <> SUPERUSER) { ?>
           <li class="<?php echo ($this->uri->segment(2) == 'report' or $this->uri->segment(3) == 'report_bill') ? 'active' : '' ?> treeview">
@@ -80,7 +82,7 @@
             </a>
             <ul class="treeview-menu">
               <li class="<?php echo ($this->uri->segment(2) == 'setting') ? 'active' : '' ?> ">
-                <a href="<?php echo site_url('manage/setting') ?>"><i class="fa  <?php echo ($this->uri->segment(2) == 'setting') ? 'fa-dot-circle-o' : 'fa-circle-o' ?>"></i> PROFIL MADRASAH</a>
+                <a href="<?php echo site_url('manage/setting') ?>"><i class="fa  <?php echo ($this->uri->segment(2) == 'setting') ? 'fa-dot-circle-o' : 'fa-circle-o' ?>"></i> PROFIL SEKOLAH</a>
               </li>
 
               <li class="<?php echo ($this->uri->segment(2) == 'month') ? 'active' : '' ?> ">

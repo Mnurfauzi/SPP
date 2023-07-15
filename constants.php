@@ -4,6 +4,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 define('SUPERUSER', 1);
 define('USER', 3);
 define('BENDAHARA', 2);
+define('YAYASAN', 4);
 
 define('SCHOOL_NAME', 1);
 define('SCHOOL_ADRESS', 2);
