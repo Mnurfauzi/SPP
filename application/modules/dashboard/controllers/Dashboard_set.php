@@ -25,6 +25,19 @@ class Dashboard_set extends CI_Controller {
         $data['bulan_day'] = $this->Bulan_model->get_total(array('status'=>1, 'date'=> date('Y-m-d')));
         $data['bebas_day'] = $this->Bebas_pay_model->get(array('date'=> date('Y-m-d')));
 
+        $datapeng = $this->db->query("SELECT * FROM pengumuman");
+		$res = $datapeng -> result_array();
+        $data['subject'] = $res[0]['subject'];
+        $data['ket'] = $res[0]['ket'];
+
+        $mydate = $res[0]['tglexpired'];
+        $curdate = date('Y-m-d');
+        $data['tglex'] = 0;
+        if($curdate < $mydate)
+        {
+            $data['tglex'] = 1;
+        }
+
         $data['total_kredit'] = 0;
         foreach ($data['kredit'] as $row) {
             $data['total_kredit'] += $row['kredit_value'];
@@ -95,6 +108,82 @@ class Dashboard_set extends CI_Controller {
             );
         }
         echo json_encode($data, TRUE);
+    }
+
+    public function edit() {
+        $data['operation'] = 'Edit';
+        $datapeng = $this->db->query("SELECT * FROM pengumuman");
+        $res = $datapeng -> result_array();
+        $data['subject'] = $res[0]['subject'];
+        $data['ket'] = $res[0]['ket'];
+        $data['tglex'] = $res[0]['tglexpired'];
+        $data['id'] = $res[0]['id'];
+ 
+        if ($_POST == TRUE) {
+
+            // $params['subject'] = $res[0]['subject'];
+            // $params['ket'] = $res[0]['ket'];
+            // $params['id'] = $res[0]['id'];
+
+
+            $params['user_id'] = $this->input->post('user_id');
+            $params['user_role_role_id'] = $this->input->post('role_id');
+            $params['user_last_update'] = date('Y-m-d H:i:s');
+            $params['user_full_name'] = $this->input->post('user_full_name');
+            $params['user_description'] = $this->input->post('user_description');
+            $status = $this->Users_model->add($params);
+            if (!empty($_FILES['user_image']['name'])) {
+                $paramsupdate['user_image'] = $this->do_upload($name = 'user_image', $fileName= $params['user_full_name']);
+            }
+
+            $paramsupdate['user_id'] = $status;
+            $this->Users_model->add($paramsupdate);
+
+            // activity log
+            $this->load->model('logs/Logs_model');
+            $this->Logs_model->add(
+                    array(
+                        'log_date' => date('Y-m-d H:i:s'),
+                        'user_id' => $this->session->userdata('uid'),
+                        'log_module' => 'Profile',
+                        'log_action' => $data['operation'],
+                        'log_info' => 'ID:' . $status . ';Name:' . $this->input->post('user_full_name')
+                    )
+            );
+
+            $this->session->set_flashdata('success', $data['operation'] . ' Pengguna Berhasil');
+            redirect('manage/dashboard');
+        } else {
+            if ($this->input->post('user_id')) {
+                redirect('manage/dashboard/edit/' . $this->input->post('user_id'));
+            }
+
+            // Edit mode
+            $data['user'] = $this->Users_model->get(array('id' => $this->session->userdata('uid')));
+            $data['roles'] = $this->Users_model->get_role();
+            $data['title'] = $data['operation'] . ' Pengguna';
+            $data['main'] = 'dashboard/pengumuman_edit';
+            $this->load->view('manage/layout', $data);
+        }
+    }
+    public function doUpdate() 
+    {
+        $id = $_POST['id'];
+        $subject = $_POST['subject'];
+        $tglex = $_POST['tglex'];
+        $ket = $_POST['ket'];
+
+        $update_data = array( 
+            'subject'=> $subject,
+            'ket'=> $ket,
+            'tglexpired'=> $tglex
+        );
+
+        $where = array('id' => $id);
+        $res = $this->db->update('pengumuman',$update_data,$where);
+        if ($res >= 1) {
+            redirect('manage');
+        }
     }
 
 }

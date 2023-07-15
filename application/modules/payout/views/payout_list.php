@@ -153,7 +153,7 @@
 							</div>
 						</div>
 
-						<div class="col-md-4">
+						<!-- <div class="col-md-4">
 							<div class="box box-success">
 								<div class="box-header with-border">
 									<h3 class="box-title">Pembayaran</h3>
@@ -181,7 +181,7 @@
 									</form>
 								</div>
 							</div>
-						</div>
+						</div> -->
 
 						<div class="col-md-3">
 							<div class="box box-success">

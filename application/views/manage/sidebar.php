@@ -34,7 +34,7 @@
             </ul>
           </li>
         <?php } ?>
-        <?php if ($this->session->userdata('uroleid') <> BENDAHARA || USER) { ?>
+        <!-- <?php if ($this->session->userdata('uroleid') <> BENDAHARA || USER) { ?>
           <li class="<?php echo ($this->uri->segment(2) == 'kredit' or $this->uri->segment(2) == 'debit') ? 'active' : '' ?> treeview">
             <a href="#">
               <i class="fa fa-shopping-cart text-stock"></i> <span>TRANSAKSI UMUM</span>
@@ -51,7 +51,7 @@
               </li>
             </ul>
           </li>
-        <?php } ?>
+        <?php } ?> -->
         <?php if ($this->session->userdata('uroleid') == SUPERUSER) { ?>
           <li class="<?php echo ($this->uri->segment(2) == 'pos' or $this->uri->segment(2) == 'payment') ? 'active' : '' ?> treeview">
             <a href="#">

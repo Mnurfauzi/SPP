@@ -8,10 +8,11 @@
   </section>
   <section class="content">
     <div class="row">
+      <?php if ($this->session->userdata('uroleid') <> 3) { ?>
       <div class="col-md-12">
         <div class="box box-success">
           <div class="box-body bg-success">
-            <div class="col-md-3 col-sm-6 col-xs-12" style="margin-top: 10px;">
+            <div class="col-md-4 col-sm-6 col-xs-12" style="margin-top: 10px;">
               <div class="info-box">
                 <span class="info-box-icon bg-blue"><i class="fa fa-random"></i></span>
                 <div class="info-box-content">
@@ -20,7 +21,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-3 col-sm-6 col-xs-12" style="margin-top: 10px;">
+            <!-- <div class="col-md-3 col-sm-6 col-xs-12" style="margin-top: 10px;">
               <div class="info-box">
                 <span class="info-box-icon bg-red"><i class="fa fa-bars"></i></span>
 
@@ -29,8 +30,8 @@
                   <span class="info-box-number"><?php echo 'Rp. ' . number_format($total_kredit, 0, ',', '.') ?></span>
                 </div>
               </div>
-            </div>
-            <div class="col-md-3 col-sm-6 col-xs-12" style="margin-top: 10px;">
+            </div> -->
+            <div class="col-md-4 col-sm-6 col-xs-12" style="margin-top: 10px;">
               <div class="info-box">
                 <span class="info-box-icon bg-green"><i class="fa fa-tags"></i></span>
 
@@ -43,7 +44,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-3 col-sm-6 col-xs-12" style="margin-top: 10px;">
+            <div class="col-md-4 col-sm-6 col-xs-12" style="margin-top: 10px;">
               <div class="info-box">
                 <span class="info-box-icon bg-yellow"><i class="fa fa-user"></i></span>
 
@@ -56,6 +57,7 @@
           </div>
         </div>
       </div>
+      <?php } ?>
     </div>
     <div class="row">
       <div class="col-md-4">
@@ -72,6 +74,26 @@
           </div>
         </div>
       </div>
+      <?php if (($tglex > 0) || ($this->session->userdata('uroleid') <> 3)){ ?>
+      <div class="col-md-4">
+          <div class="info-box">
+                <span class="info-box-icon bg-red"><i class="fa fa-info"></i></span>
+                <div class="info-box-content">
+                  <span class="info-box-text dash-text"><?php echo $subject ?></span>
+                  <span class="info-box-number"><?php echo $ket ?></span>
+                </div>
+          </div>
+          <?php if ($this->session->userdata('uroleid') <> 3) { ?>
+          <a href="<?php echo site_url('manage/dashboard/edit/') ?>" class="btn btn-success"><i class="fa fa-edit"></i> <b>Edit</b></a>
+          <?php } ?>
+          <?php if ($tglex > 0) { ?>
+            <span class="label label-success">Pengumuman Aktif</span>
+          <?php } else { ?>
+            <span class="label label-danger">Pengumuman Kadaluarsa</span>
+          <?php } ?>
+          <br>
+      </div>
+      <?php } ?>
     </div>
   </section>
 </div>
