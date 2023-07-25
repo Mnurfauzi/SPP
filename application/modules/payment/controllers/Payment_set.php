@@ -136,7 +136,8 @@ class Payment_set extends CI_Controller
 
     $data['class'] = $this->Student_model->get_class($params);
     $data['majors'] = $this->Student_model->get_majors($params);
-    $data['student'] = $this->Bulan_model->get($params);
+    //$data['student'] = $this->Bulan_model->get($params);
+    $data['student'] = $this->Student_model->get($params);
     $data['payment'] = $this->Payment_model->get(array('id' => $id));
     $data['title'] = 'Tarif Pembayaran';
     $data['main'] = 'payment/payment_view_bulan';

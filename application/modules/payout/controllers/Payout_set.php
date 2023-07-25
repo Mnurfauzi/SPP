@@ -155,7 +155,7 @@ class Payout_set extends CI_Controller
 
   function cetakBukti()
   {
-    $this->load->helper(array('dompdf'));
+    //$this->load->helper(array('dompdf'));
     $f = $this->input->get(NULL, TRUE);
 
     $data['f'] = $f;

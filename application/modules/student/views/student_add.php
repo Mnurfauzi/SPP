@@ -154,7 +154,10 @@ if (isset($student)) {
 											<label>Kelas *</label>
 											<select name="class_class_id" class="form-control autocomplete">
 												<option value="">-- Pilih Kelas --</option>
-												<option ng-repeat="class in classs" ng-selected="class_data.index == class.class_id" value="{{class.class_id}}">{{class.class_name}}</option>
+												<?php foreach ($class as $row) : ?>
+													<option value="<?php echo $row['class_id'] ?>" <?php echo ($inputClassValue == $row['class_id']) ? 'selected' : '' ?>><?php echo $row['class_name'] ?></option>
+												<?php endforeach ?>
+												<!-- <option ng-repeat="class in classs" ng-selected="class_data.index == class.class_id" value="{{class.class_id}}">{{class.class_name}}</option> -->
 											</select>
 											<br>
 											<a data-toggle="modal" href="#myModal" class="btn btn-primary"><span class="fa fa-plus"></span> Tambah Kelas</a>

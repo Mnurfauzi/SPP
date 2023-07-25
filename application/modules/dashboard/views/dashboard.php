@@ -74,6 +74,7 @@
           </div>
         </div>
       </div>
+      <!-- pengumuman tampil Jika Tanggal Expired = 1 atau selain user orang tua -->
       <?php if (($tglex > 0) || ($this->session->userdata('uroleid') <> 3)){ ?>
       <div class="col-md-4">
           <div class="info-box">
@@ -83,8 +84,10 @@
                   <span class="info-box-number"><?php echo $ket ?></span>
                 </div>
           </div>
+          <!-- button edit dan status penguman tampil selain user orang tua -->
           <?php if ($this->session->userdata('uroleid') <> 3) { ?>
           <a href="<?php echo site_url('manage/dashboard/edit/') ?>" class="btn btn-success"><i class="fa fa-edit"></i> <b>Edit</b></a>
+              <!-- Status tgl Expired terganti jika tgl expired lebih besar dari tgl sekarang -->
               <?php if ($tglex > 0) { ?>
                 <span class="label label-success">Pengumuman Aktif</span>
               <?php } else { ?>

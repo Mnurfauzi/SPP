@@ -30,9 +30,11 @@ class Dashboard_set extends CI_Controller {
         $data['subject'] = $res[0]['subject'];
         $data['ket'] = $res[0]['ket'];
 
+        
         $mydate = $res[0]['tglexpired'];
         $curdate = date('Y-m-d');
         $data['tglex'] = 0;
+        // jika tgl sekarang lebih besar dari tgl expired, maka tglex = 1
         if($curdate < $mydate)
         {
             $data['tglex'] = 1;

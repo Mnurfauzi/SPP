@@ -105,6 +105,7 @@ class Student_set extends CI_Controller
       $paramsupdate['student_id'] = $status;
       $this->Student_model->add($paramsupdate);
 
+      $this->InsertUser($this->input->post('student_nisn'),$this->input->post('student_full_name'));
       // activity log
       $this->load->model('logs/Logs_model');
       $this->Logs_model->add(
@@ -568,4 +569,18 @@ class Student_set extends CI_Controller
 
     return $filename_img_barcode;
   }
+
+  public function InsertUser($username,$name) 
+    {
+      $data = array(
+        'user_input_date' => date('Y-m-d H:i:s'), 
+        'user_email' => $username, 
+        'user_password' => sha1($username), 
+        'user_role_role_id' => 3, 
+        'user_last_update' => date('Y-m-d H:i:s'),
+        'user_full_name' => $name,
+        'user_description' => "Siswa"
+      );
+      $res = $this->db->insert("users",$data);
+    }
 }
