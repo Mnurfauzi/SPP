@@ -52,7 +52,7 @@ class Setting_set extends CI_Controller
             $this->session->set_flashdata('success', ' Sunting pengaturan berhasil');
             redirect('manage/setting');
         } else {
-            $data['title'] = 'Pengaturan Profil Madrasah';
+            $data['title'] = 'Pengaturan Profil Sekolah';
             $data['setting_school'] = $this->Setting_model->get(array('id' => 1));
             $data['setting_address'] = $this->Setting_model->get(array('id' => 2));
             $data['setting_phone'] = $this->Setting_model->get(array('id' => 3));

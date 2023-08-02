@@ -47,7 +47,7 @@
 								<th>NIM</th>
 								<th>Nama</th>
 								<th>Kelas</th>
-								<th>Jurusan</th>
+								<th>Nama Abjad</th>
 								<th>Status</th>
 								<th>Aksi</th>
 							</tr>

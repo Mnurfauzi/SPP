@@ -48,7 +48,7 @@
 
 					<div class="box box-success">
 						<div class="box-header">
-							<h3 class="box-title">Tarif Tagihan Per Jurusan</h3>
+							<h3 class="box-title">Tarif Tagihan Per Nama Abjad</h3>
 						</div>
 						<div class="box-body table-responsive">
 
@@ -66,10 +66,10 @@
 										</td>
 									</tr>
 									<tr>
-										<td><strong>Program Jurusan</strong></td>
+										<td><strong>Program Nama Abjad</strong></td>
 										<td>
 											<select name="majors_id" class="form-control">
-												<option selected="">---Pilih Jurusan---</option>
+												<option selected="">---Pilih Nama Abjad---</option>
 												<?php foreach ($majors as $row) : ?>
 													<option value="<?php echo $row['majors_id']; ?>"><?php echo $row['majors_name']; ?></option>
 												<?php endforeach; ?>

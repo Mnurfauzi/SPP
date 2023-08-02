@@ -110,7 +110,7 @@
         </tr>
         <?php if (majors() == 'senior') { ?>
           <tr>
-            <td>Jurusan</td>
+            <td>Nama Abjad</td>
             <td>:</td>
             <td><?php echo $student['majors_name'] ?></td>
           </tr>

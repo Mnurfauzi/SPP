@@ -91,7 +91,7 @@
     </tr>
     <?php if (majors() == 'senior') { ?>
       <tr>
-        <td>Jurusan</td>
+        <td>Nama Abjad</td>
         <td>:</td>
         <?php foreach ($siswa as $row) : ?>
           <td><?php echo $row['majors_name'] ?></td>
