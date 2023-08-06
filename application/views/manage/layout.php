@@ -160,6 +160,11 @@
       </script>
     <?php } ?>
 
+    <?php 
+          $this->session->set_flashdata('success', '');
+          $this->session->set_flashdata('failed', '');
+        ?>
+
     <script>
       $(document).ready(function() {
         $('.numeric').inputmask("numeric", {

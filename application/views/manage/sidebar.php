@@ -18,7 +18,7 @@
           </li>
         <?php } ?>
 
-        <?php if ($this->session->userdata('uroleid') <> SUPERUSER) { ?>
+        <?php if ($this->session->userdata('uroleid') != USER) { ?>
           <li class="<?php echo ($this->uri->segment(2) == 'report' or $this->uri->segment(3) == 'report_bill') ? 'active' : '' ?> treeview">
             <a href="#">
               <i class="fa fa-file-text text-stock"></i> <span>LAPORAN</span>
@@ -150,6 +150,7 @@
         </li>
       <?php } ?>
 
+      
       </ul>
     </section>
     <!-- /.sidebar -->

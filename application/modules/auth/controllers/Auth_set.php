@@ -42,6 +42,7 @@ class Auth_set extends CI_Controller {
                 $this->session->set_userdata('uroleid', $user[0]['user_role_role_id']);
                 $this->session->set_userdata('urolename', $user[0]['role_name']);
                 $this->session->set_userdata('user_image', $user[0]['user_image']);
+                $this->session->set_flashdata('success', 'Login Success');
                 if ($location != '') {
                     header("Location:" . htmlspecialchars($location));
                 } else {

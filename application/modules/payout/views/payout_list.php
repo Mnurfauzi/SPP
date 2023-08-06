@@ -18,7 +18,9 @@
 							<h3 class="box-title">Filter Transaksi Pembayaran</h3>
 						</div>
 						<div class="col-sm-6 text-right">
-							<a href="<?php echo site_url('manage/student') ?>" class="btn btn-xs btn-success" style="margin-right: -15px;"><i class="fa fa-navicon"></i> Referensi Data Siswa</a>
+							<?php if($this->session->userdata('uroleid') != USER) {?>
+								<a href="<?php echo site_url('manage/student') ?>" class="btn btn-xs btn-success" style="margin-right: -15px;"><i class="fa fa-navicon"></i> Referensi Data Siswa</a>
+							<?php }?>
 						</div>
 					</div><!-- /.box-header -->
 					<div class="box-body">
@@ -34,7 +36,7 @@
 						<div class="col-md-6">
 							<label for="" class="control-label">Input Berdasarkan NIM Siswa</label><br><br>
 							<div class="input-group">
-								<input type="text" class="form-control" autofocus name="r" <?php echo (isset($f['r'])) ? 'placeholder="' . $f['r'] . '"' : 'placeholder="Masukkan NIM Siswa"' ?> required>
+								<input type="text" class="form-control" autofocus name="r" <?php echo (isset($f['r'])) ? 'placeholder="' . $f['r'] . '"' : 'placeholder="Masukkan NIM Siswa"' ?> value="<?php echo $this->session->userdata('uroleid') == USER ? $this->session->userdata('uemail') : '' ?>" <?php echo $this->session->userdata('uroleid') == USER ? 'Readonly' : '' ?> required>
 								<span class="input-group-btn">
 									<button class="btn btn-success" type="submit"><i class="fa fa-search"></i> Cari Data</button>
 								</span>
