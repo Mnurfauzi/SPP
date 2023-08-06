@@ -43,7 +43,7 @@
         <?php echo form_open('manage/auth/login', array('class' => 'login100-form validate-form')); ?>
         <div class="row">
           <i class="fa fa-user"></i>
-          <input type="text" required="" autofocus="" name="email" placeholder="Email" class="form-control flat">
+          <input type="text" required="" autofocus="" name="email" placeholder="Username" class="form-control flat">
         </div>
         <div class="row">
           <i class="fa fa-lock"></i>

@@ -37,11 +37,11 @@ class Users_set extends CI_Controller
         }
 
         $paramsPage = $params;
-        $params['limit'] = 5;
+        $params['limit'] = 15;
         $params['offset'] = $offset;
         $data['user'] = $this->Users_model->get($params);
 
-        $config['per_page'] = 5;
+        $config['per_page'] = 15;
         $config['uri_segment'] = 4;
         $config['base_url'] = site_url('manage/users/index');
         $config['suffix'] = '?' . http_build_query($_GET, '', "&");

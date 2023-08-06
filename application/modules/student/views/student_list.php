@@ -45,6 +45,7 @@
 								<th><input type="checkbox" id="selectall" value="checkbox" name="checkbox"></th>
 								<th>No</th>
 								<th>NIM</th>
+								<th>NISN</th>
 								<th>Nama</th>
 								<th>Kelas</th>
 								<th>Nama Abjad</th>
@@ -61,6 +62,7 @@
 											<td><input type="checkbox" class="checkbox" name="msg[]" value="<?php echo $row['student_id']; ?>"></td>
 											<td><?php echo $i; ?></td>
 											<td><?php echo $row['student_nis']; ?></td>
+											<td><?php echo $row['student_nisn']; ?></td>
 											<td><?php echo $row['student_full_name']; ?></td>
 											<td><?php echo $row['class_name']; ?></td>
 											<td><?php echo $row['majors_name']; ?></td>

@@ -33,7 +33,7 @@
 						<table class="table table-hover table-striped table-bordered">
 							<tr>
 								<th>No</th>
-								<th>Email</th>
+								<th>Username</th>
 								<th>Nama</th>
 								<th>Hak Akses</th>
 								<th>Aksi</th>
