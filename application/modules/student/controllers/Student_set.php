@@ -322,6 +322,8 @@ class Student_set extends CI_Controller
             redirect('manage/student/import');
           } else if ($this->db->insert('student', $arr)) {
             $success++;
+
+            $this->InsertUser(trim($exp[1]),trim($exp[2]));
           } else {
             $failled++;
           }
