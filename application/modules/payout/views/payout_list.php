@@ -34,9 +34,9 @@
 							</select>
 						</div>
 						<div class="col-md-6">
-							<label for="" class="control-label">Input Berdasarkan NIM Siswa</label><br><br>
+							<label for="" class="control-label">Input Berdasarkan NIS Siswa</label><br><br>
 							<div class="input-group">
-								<input type="text" class="form-control" autofocus name="r" <?php echo (isset($f['r'])) ? 'placeholder="' . $f['r'] . '"' : 'placeholder="Masukkan NIM Siswa"' ?> value="<?php echo $this->session->userdata('uroleid') == USER ? $this->session->userdata('uemail') : '' ?>" <?php echo $this->session->userdata('uroleid') == USER ? 'Readonly' : '' ?> required>
+								<input type="text" class="form-control" autofocus name="r" <?php echo (isset($f['r'])) ? 'placeholder="' . $f['r'] . '"' : 'placeholder="Masukkan NIS Siswa"' ?> value="<?php echo $this->session->userdata('uroleid') == USER ? $this->session->userdata('uemail') : '' ?>" <?php echo $this->session->userdata('uroleid') == USER ? 'Readonly' : '' ?> required>
 								<span class="input-group-btn">
 									<button class="btn btn-success" type="submit"><i class="fa fa-search"></i> Cari Data</button>
 								</span>
@@ -68,7 +68,7 @@
 											<?php endforeach; ?>
 										</tr>
 										<tr>
-											<td>NIM</td>
+											<td>NIS</td>
 											<td>:</td>
 											<?php foreach ($siswa as $row) : ?>
 												<?php echo (isset($f['n']) and $f['r'] == $row['student_nis']) ?

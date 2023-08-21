@@ -44,7 +44,7 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="" class="col-sm-4 control-label">NIM</label>
+								<label for="" class="col-sm-4 control-label">NIS</label>
 								<div class="col-sm-8">
 									<input type="text" class="form-control" readonly="" value="<?php echo $student['student_nis'] ?>">
 								</div>

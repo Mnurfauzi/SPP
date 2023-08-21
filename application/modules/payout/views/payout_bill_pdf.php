@@ -69,7 +69,7 @@
 
   <table style="font-size: 10pt;" width="100%" border="0">
     <tr>
-      <td width="100">NIM</td>
+      <td width="100">NIS</td>
       <td width="5">:</td>
       <?php foreach ($siswa as $row) : ?>
         <td width=""><?php echo $row['student_nis'] ?></td>

@@ -108,7 +108,7 @@
 	<table style="padding-top: -5px; padding-bottom: 5px">
 		<tbody>
 			<tr>
-				<td style="width: 100px;">NIM</td>
+				<td style="width: 100px;">NIS</td>
 				<td style="width: 5px;">:</td>
 				<?php foreach ($siswa as $row) : ?>
 					<td style="width: 150px;"><?php echo $row['student_nis'] ?></td>

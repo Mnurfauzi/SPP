@@ -116,7 +116,7 @@
             </ul>
           </li>
         <?php } ?>
-
+<!---
         <li class="<?php echo ($this->uri->segment(2) == 'report' or $this->uri->segment(3) == 'report_bill') ? 'active' : '' ?> treeview">
           <a href="#">
             <i class="fa fa-file-text text-stock"></i> <span>LAPORAN</span>
@@ -134,7 +134,7 @@
             </li>
           </ul>
         </li>
-
+--->
         <li class="<?php echo ($this->uri->segment(2) == 'users') ? 'active' : '' ?>">
           <a href="<?php echo site_url('manage/users'); ?>">
             <i class="fa fa-user"></i> <span>PENGGUNA APLIKASI</span>

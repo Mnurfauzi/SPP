@@ -119,7 +119,7 @@ if (isset($student)) {
 								<div class="tab-pane" id="tab_2">
 									<div class="form-group">
 										<label>Nomor Induk Siswa (NIS) <small data-toggle="tooltip" title="Wajib diisi">*</small></label>
-										<input name="student_nis" type="text" class="form-control" value="<?php echo $inputNisValue ?>" placeholder="NIM">
+										<input name="student_nis" type="text" class="form-control" value="<?php echo $inputNisValue ?>" placeholder="NIS">
 									</div>
 
 									<?php if (!isset($student)) { ?>

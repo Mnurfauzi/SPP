@@ -69,7 +69,7 @@
 							<table class="table table-hover table-striped table-bordered">
 								<tr>
 									<th>No</th>
-									<th>NIM</th>
+									<th>NIS</th>
 									<th>Nama</th>
 									<th>Kelas</th>
 									<?php if (majors() == 'senior') { ?>

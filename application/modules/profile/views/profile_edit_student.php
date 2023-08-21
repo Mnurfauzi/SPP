@@ -118,7 +118,7 @@ if (isset($student)) {
 
 								<div class="tab-pane" id="tab_2">
 									<div class="form-group">
-										<label>NIM <small data-toggle="tooltip" title="Wajib diisi">*</small></label>
+										<label>NIS <small data-toggle="tooltip" title="Wajib diisi">*</small></label>
 										<input readonly="" type="text" class="form-control" value="<?php echo $inputNisValue ?>">
 									</div>
 

@@ -42,7 +42,7 @@
 								<tr>
 									<th><input type="checkbox" id="selectall" value="checkbox" name="checkbox"></th>
 									<th>No</th>
-									<th>NIM</th>
+									<th>NIS</th>
 									<th>Nama</th>
 									<th>Status Kelulusan</th>
 								</tr>
@@ -101,7 +101,7 @@
 								<tr>
 									<th><input type="checkbox" id="selectall2" value="checkbox" name="checkbox"></th>
 									<th>No</th>
-									<th>NIM</th>
+									<th>NIS</th>
 									<th>Nama</th>
 									<th>Status Kelulusan</th>
 								</tr>

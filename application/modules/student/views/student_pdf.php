@@ -89,7 +89,7 @@
 
       <table class="name">
         <tr>
-          <td>NIM</td>
+          <td>NIS</td>
           <td>:</td>
           <td><?php echo $student['student_nis'] ?></td>
         </tr>

@@ -42,7 +42,7 @@
 								<tr>
 									<th><input type="checkbox" id="selectall" value="checkbox" name="checkbox"></th>
 									<th>No</th>
-									<th>NIM</th>
+									<th>NIS</th>
 									<th>Nama</th>
 									<th>Kelas</th>
 								</tr>
