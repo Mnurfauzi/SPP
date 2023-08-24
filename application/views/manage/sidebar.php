@@ -8,7 +8,12 @@
             <span class="pull-right-container"></span>
           </a>
         </li>
-
+        <li class="<?php echo ($this->uri->segment(2) == 'bukti') ? 'active' : '' ?>">
+            <a href="<?php echo site_url('manage/bukti'); ?>">
+              <i class="fa fa-money"></i> <span>Bukti Bayar</span>
+              <span class="pull-right-container"></span>
+            </a>
+          </li>
         <?php if ($this->session->userdata('uroleid') <> YAYASAN) { ?>
           <li class="<?php echo ($this->uri->segment(2) == 'payout') ? 'active' : '' ?>">
             <a href="<?php echo site_url('manage/payout'); ?>">
