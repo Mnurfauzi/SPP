@@ -91,8 +91,9 @@
 												<td><?php echo $row['majors_name']; ?></td>
 											<?php endif ?>
 											<td>
-												<a href="<?php echo site_url('manage/payment/edit_payment_bulan/' . $row['payment_payment_id'] . '/' . $row['student_student_id']) ?>" class="btn btn-xs btn-warning" data-toggle="tooltip" title="Ubah Tarif"><i class="fa fa-edit"></i></a>
-
+												<?php if ($row['payment_payment_id'] != '' && $row['student_student_id'] != '') : ?>
+													<a href="<?php echo site_url('manage/payment/edit_payment_bulan/' . $row['payment_payment_id'] . '/' . $row['student_student_id']) ?>" class="btn btn-xs btn-warning" data-toggle="tooltip" title="Ubah Tarif"><i class="fa fa-edit"></i></a>
+												<?php endif ?>
 											</td>
 										</tr>
 								<?php

@@ -55,7 +55,7 @@
 								<div style="margin-top:25px;">
 									<button type="submit" class="btn btn-primary"><i class="fa fa-filter"></i> Filter Data</button>
 									<?php if ($q and !empty($py)) { ?>
-										<a class="btn btn-success" href="<?php echo site_url('manage/report/report_bill_detail' . '/?' . http_build_query($q)) ?>"><i class="fa fa-file-excel-o"></i> Export Excel</a>
+										<a class="btn btn-success" onclick="printDiv('printableArea')"><i class="fa fa-file-excel-o"></i> Export Excel</a>
 									<?php } ?>
 								</div>
 							</div>
@@ -63,11 +63,10 @@
 					</div>
 				</div>
 				<?php if ($q and !empty($py)) { ?>
-					<div class="box box-success">
+					<div class="box box-success" id="printableArea">
 						<div class="box-body table-responsive">
-							<table class="table table-responsive table-hover table-bordered" style="white-space: nowrap;">
+							<table class="table table-responsive table-hover table-bordered" style="white-space: nowrap; font-size:10px;">
 								<tr>
-									<th rowspan="2">Kelas</th>
 									<th rowspan="2">Nama</th>
 									<?php foreach ($py as $row) : ?>
 										<th colspan="<?php echo count($month) ?>">
@@ -86,7 +85,6 @@
 
 								<?php foreach ($student as $row) : ?>
 									<tr>
-										<td><?php echo $row['class_name'] ?></td>
 										<td><?php echo $row['student_full_name'] ?></td>
 										<?php foreach ($bulan as $key) : ?>
 											<?php if ($key['student_student_id'] == $row['student_student_id']) { ?>
@@ -105,7 +103,7 @@
 						</div>
 						<!-- /.box-body -->
 					</div>
-				<?php } ?>
+				<?php } else if (empty($py)) { echo "<center><h3>Data Tidak Ada</h3></center>"; } ?>
 			</div>
 		</div>
 	</section>

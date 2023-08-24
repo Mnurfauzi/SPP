@@ -21,7 +21,7 @@ class Payout_set extends CI_Controller
     // Apply Filter
     // Get $_GET variable
     $f = $this->input->get(NULL, TRUE);
-
+    
     $data['f'] = $f;
 
     $siswa['student_id'] = '';

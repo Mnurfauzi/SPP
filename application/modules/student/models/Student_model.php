@@ -69,7 +69,7 @@ class Student_model extends CI_Model
 
         if (isset($params['group'])) {
 
-            $this->db->group_by('student.class_class_id');
+            $this->db->group_by('student.student_id');
         }
 
 
@@ -87,10 +87,16 @@ class Student_model extends CI_Model
             $this->db->order_by('student_full_name', 'asc');
         }
         $this->db->select('student.student_id, student_nis, student_nisn, student_password, student_gender, student_phone, student_hobby, student_address, student_parent_phone, student_full_name, student_born_place, student_born_date, student_img, student_status, student_name_of_mother, student_name_of_father, student_input_date, student_last_update');
+        $this->db->select('student_student_id, student_img, student_nis, student_full_name, student_name_of_mother, student_parent_phone, student.class_class_id, student.majors_majors_id, majors_name, majors_short_name, class_name');
         $this->db->select('class_class_id, class.class_name');
         $this->db->select('majors_majors_id, majors.majors_name, majors_short_name');
+        $this->db->select('payment_payment_id, period_period_id, period_status, period_start, period_end, pos_name, payment_type');
         $this->db->join('class', 'class.class_id = student.class_class_id', 'left');
         $this->db->join('majors', 'majors.majors_id = student.majors_majors_id', 'left');
+        $this->db->join('bulan', 'bulan.student_student_id = student.student_id', 'left');
+        $this->db->join('payment', 'payment.payment_id = bulan.payment_payment_id', 'left');
+        $this->db->join('period', 'period.period_id = payment.period_period_id', 'left');
+        $this->db->join('pos', 'pos.pos_id = payment.pos_pos_id', 'left');
         $res = $this->db->get('student');
         if (isset($params['id'])) {
             return $res->row_array();

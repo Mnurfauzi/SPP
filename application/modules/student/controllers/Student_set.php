@@ -31,6 +31,7 @@ class Student_set extends CI_Controller
     if (isset($f['n']) && !empty($f['n']) && $f['n'] != '') {
       $params['student_search'] = $f['n'];
     }
+    $params['group'] = TRUE;
 
     $paramsPage = $params;
     $params['limit'] = 10;
