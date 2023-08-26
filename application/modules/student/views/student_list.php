@@ -27,66 +27,65 @@
 						</div>
 						<div class="container">
 							<div class="row">
-								<form action="<?php echo site_url('manage/student/multiple'); ?>" method="post">
-									<input type="hidden" name="action" value="printPdf">
-									<button type="submit" class="btn btn-danger btn-sm" formtarget="_blank"><span class="fa fa-print"></span> Cetak Kartu</button>
-
-									<?php if ($this->session->userdata('uroleid') == SUPERUSER) { ?>
-										<a href="<?php echo site_url('manage/student/add') ?>" class="btn btn-sm btn-success"><i class="fa fa-plus"></i> Tambah Data</a>
-										<a href="<?php echo site_url('manage/student/import') ?>" class="btn btn-sm btn-primary"><i class="fa fa-upload"></i> Upload Siswa</a>
-									<?php } ?>
+								<a class="btn btn-danger btn-sm" onclick="printDiv('printableArea')"><i class="fa fa-file-pdf-o"></i> Download</a>
+								<?php if ($this->session->userdata('uroleid') == SUPERUSER) { ?>
+									<a href="<?php echo site_url('manage/student/add') ?>" class="btn btn-sm btn-success"><i class="fa fa-plus"></i> Tambah Data</a>
+									<a href="<?php echo site_url('manage/student/import') ?>" class="btn btn-sm btn-primary"><i class="fa fa-upload"></i> Upload Siswa</a>
+								<?php } ?>
 							</div>
 						</div>
 					</div>
 					<!-- /.box-header -->
 					<div class="box-body table-responsive">
-						<table class="table table-hover table-striped table-bordered">
-							<tr class="bg-success">
-								<th><input type="checkbox" id="selectall" value="checkbox" name="checkbox"></th>
-								<th>No</th>
-								<th>NIS</th>
-								<th>NISN</th>
-								<th>Nama</th>
-								<th>Kelas</th>
-								<th>Nama Abjad</th>
-								<th>Status</th>
-								<th>Aksi</th>
-							</tr>
-							<tbody>
-								<?php
-								if (!empty($student)) {
-									$i = 1;
-									foreach ($student as $row) :
-								?>
-										<tr>
-											<td><input type="checkbox" class="checkbox" name="msg[]" value="<?php echo $row['student_id']; ?>"></td>
-											<td><?php echo $i; ?></td>
-											<td><?php echo $row['student_nis']; ?></td>
-											<td><?php echo $row['student_nisn']; ?></td>
-											<td><?php echo $row['student_full_name']; ?></td>
-											<td><?php echo $row['class_name']; ?></td>
-											<td><?php echo $row['majors_name']; ?></td>
-											<td><label class="label <?php echo ($row['student_status'] == 1) ? 'label-success' : 'label-danger' ?>"><?php echo ($row['student_status'] == 1) ? 'Aktif' : 'Tidak Aktif' ?></label></td>
-											<td>
-												<a href="<?php echo site_url('manage/student/rpw/' . $row['student_id']) ?>" class="btn btn-xs btn-danger" data-toggle="tooltip" title="Reset Password"><i class="fa fa-unlock"></i></a>
-												<a href="<?php echo site_url('manage/student/view/' . $row['student_id']) ?>" class="btn btn-xs btn-primary" data-toggle="tooltip" title="Lihat"><i class="fa fa-eye"></i></a>
-												<?php if ($this->session->userdata('uroleid') == SUPERUSER) { ?>
-													<a href="<?php echo site_url('manage/student/edit/' . $row['student_id']) ?>" class="btn btn-xs btn-warning" data-toggle="tooltip" title="Edit"><i class="fa fa-edit"></i></a>
-												<?php } ?>
-												<a href="<?php echo site_url('manage/student/printPdf/' . $row['student_id']) ?>" class="btn btn-success btn-xs view-pdf" data-toggle="tooltip" title="Cetak Kartu"><i class="fa fa-print"></i></a>
-											</td>
-										</tr>
+						<div id="printableArea">
+							<table class="table table-hover table-striped table-bordered">
+								<tr class="bg-success">
+									<th><input type="checkbox" id="selectall" value="checkbox" name="checkbox"></th>
+									<th>No</th>
+									<th>NIS</th>
+									<th>NISN</th>
+									<th>Nama</th>
+									<th>Kelas</th>
+									<th>Nama Abjad</th>
+									<th>Status</th>
+									<th>Aksi</th>
+								</tr>
+								<tbody>
 									<?php
-										$i++;
-									endforeach;
-								} else {
+									if (!empty($student)) {
+										$i = 1;
+										foreach ($student as $row) :
 									?>
-									<tr id="row">
-										<td colspan="8" align="center">Data Kosong</td>
-									</tr>
-								<?php } ?>
-							</tbody>
-						</table>
+											<tr>
+												<td><input type="checkbox" class="checkbox" name="msg[]" value="<?php echo $row['student_id']; ?>"></td>
+												<td><?php echo $i; ?></td>
+												<td><?php echo $row['student_nis']; ?></td>
+												<td><?php echo $row['student_nisn']; ?></td>
+												<td><?php echo $row['student_full_name']; ?></td>
+												<td><?php echo $row['class_name']; ?></td>
+												<td><?php echo $row['majors_name']; ?></td>
+												<td><label class="label <?php echo ($row['student_status'] == 1) ? 'label-success' : 'label-danger' ?>"><?php echo ($row['student_status'] == 1) ? 'Aktif' : 'Tidak Aktif' ?></label></td>
+												<td>
+													<a href="<?php echo site_url('manage/student/rpw/' . $row['student_id']) ?>" class="btn btn-xs btn-danger" data-toggle="tooltip" title="Reset Password"><i class="fa fa-unlock"></i></a>
+													<a href="<?php echo site_url('manage/student/view/' . $row['student_id']) ?>" class="btn btn-xs btn-primary" data-toggle="tooltip" title="Lihat"><i class="fa fa-eye"></i></a>
+													<?php if ($this->session->userdata('uroleid') == SUPERUSER) { ?>
+														<a href="<?php echo site_url('manage/student/edit/' . $row['student_id']) ?>" class="btn btn-xs btn-warning" data-toggle="tooltip" title="Edit"><i class="fa fa-edit"></i></a>
+													<?php } ?>
+													<a href="<?php echo site_url('manage/student/printPdf/' . $row['student_id']) ?>" class="btn btn-success btn-xs view-pdf" data-toggle="tooltip" title="Cetak Kartu"><i class="fa fa-print"></i></a>
+												</td>
+											</tr>
+										<?php
+											$i++;
+										endforeach;
+									} else {
+										?>
+										<tr id="row">
+											<td colspan="8" align="center">Data Kosong</td>
+										</tr>
+									<?php } ?>
+								</tbody>
+							</table>
+						</div>
 					</div>
 					<!-- /.box-body -->
 				</div>

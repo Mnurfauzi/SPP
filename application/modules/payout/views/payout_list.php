@@ -52,157 +52,111 @@
 						<div class="box-header with-border">
 							<h3 class="box-title">Informasi Siswa</h3>
 							<?php if ($f['n'] and $f['r'] != NULL) { ?>
-								<a href="<?php echo site_url('manage/payout/printBill' . '/?' . http_build_query($f)) ?>" target="_blank" class="btn btn-warning btn-xs pull-right"><i class="fa fa-print"></i> Cetak Semua Tagihan</a>
+								<!-- <a href="<?php echo site_url('manage/payout/printBill' . '/?' . http_build_query($f)) ?>" target="_blank" class="btn btn-warning btn-xs pull-right"><i class="fa fa-print"></i> Cetak Semua Tagihan</a> -->
 							<?php } ?>
+							<a class="btn btn-danger pull-right btn-xs" onclick="printDiv('printableinfosiswa')"><i class="fa fa-file-pdf-o"></i> Download</a>
 						</div><!-- /.box-header -->
 						<div class="box-body">
-							<div class="col-md-9">
-								<table class="table table-striped">
-									<tbody>
-										<tr>
-											<td width="200">Tahun Ajaran</td>
-											<td width="4">:</td>
-											<?php foreach ($period as $row) : ?>
-												<?php echo (isset($f['n']) and $f['n'] == $row['period_id']) ?
-													'<td><strong>' . $row['period_start'] . '/' . $row['period_start'] . '<strong></td>' : '' ?>
-											<?php endforeach; ?>
-										</tr>
-										<tr>
-											<td>NIS</td>
-											<td>:</td>
-											<?php foreach ($siswa as $row) : ?>
-												<?php echo (isset($f['n']) and $f['r'] == $row['student_nis']) ?
-													'<td>' . $row['student_nis'] . '</td>' : '' ?>
-											<?php endforeach; ?>
-										</tr>
-										<tr>
-											<td>Nama Siswa</td>
-											<td>:</td>
-											<?php foreach ($siswa as $row) : ?>
-												<?php echo (isset($f['n']) and $f['r'] == $row['student_nis']) ?
-													'<td>' . $row['student_full_name'] . '</td>' : '' ?>
-											<?php endforeach; ?>
-										</tr>
-										<tr>
-											<td>Nama Ibu Kandung</td>
-											<td>:</td>
-											<?php foreach ($siswa as $row) : ?>
-												<?php echo (isset($f['n']) and $f['r'] == $row['student_nis']) ?
-													'<td>' . $row['student_name_of_mother'] . '</td>' : '' ?>
-											<?php endforeach; ?>
-										</tr>
-										<tr>
-											<td>Kelas</td>
-											<td>:</td>
-											<?php foreach ($siswa as $row) : ?>
-												<?php echo (isset($f['n']) and $f['r'] == $row['student_nis']) ?
-													'<td>' . $row['class_name'] . '</td>' : '' ?>
-											<?php endforeach; ?>
-										</tr>
-										<?php if (majors() == 'senior') { ?>
+							<div id="printableinfosiswa">
+								<div class="col-md-9">
+									<table class="table table-striped">
+										<tbody>
 											<tr>
-												<td>Nama Abjad</td>
+												<td width="200">Tahun Ajaran</td>
+												<td width="4">:</td>
+												<?php foreach ($period as $row) : ?>
+													<?php echo (isset($f['n']) and $f['n'] == $row['period_id']) ?
+														'<td><strong>' . $row['period_start'] . '/' . $row['period_start'] . '<strong></td>' : '' ?>
+												<?php endforeach; ?>
+											</tr>
+											<tr>
+												<td>NIS</td>
 												<td>:</td>
 												<?php foreach ($siswa as $row) : ?>
 													<?php echo (isset($f['n']) and $f['r'] == $row['student_nis']) ?
-														'<td>' . $row['majors_name'] . '</td>' : '' ?>
+														'<td>' . $row['student_nis'] . '</td>' : '' ?>
 												<?php endforeach; ?>
 											</tr>
-										<?php } ?>
-									</tbody>
-								</table>
-							</div>
-							<div class="col-md-3">
-								<?php foreach ($siswa as $row) : ?>
-									<?php if (isset($f['n']) and $f['r'] == $row['student_nis']) { ?>
-										<?php if (!empty($row['student_img'])) { ?>
-											<img src="<?php echo upload_url('student/' . $row['student_img']) ?>" class="img-thumbnail img-responsive">
-										<?php } else { ?>
-											<img src="<?php echo media_url('img/user.png') ?>" class="img-thumbnail img-responsive">
-									<?php }
-									} ?>
-								<?php endforeach; ?>
+											<tr>
+												<td>Nama Siswa</td>
+												<td>:</td>
+												<?php foreach ($siswa as $row) : ?>
+													<?php echo (isset($f['n']) and $f['r'] == $row['student_nis']) ?
+														'<td>' . $row['student_full_name'] . '</td>' : '' ?>
+												<?php endforeach; ?>
+											</tr>
+											<tr>
+												<td>Nama Ibu Kandung</td>
+												<td>:</td>
+												<?php foreach ($siswa as $row) : ?>
+													<?php echo (isset($f['n']) and $f['r'] == $row['student_nis']) ?
+														'<td>' . $row['student_name_of_mother'] . '</td>' : '' ?>
+												<?php endforeach; ?>
+											</tr>
+											<tr>
+												<td>Kelas</td>
+												<td>:</td>
+												<?php foreach ($siswa as $row) : ?>
+													<?php echo (isset($f['n']) and $f['r'] == $row['student_nis']) ?
+														'<td>' . $row['class_name'] . '</td>' : '' ?>
+												<?php endforeach; ?>
+											</tr>
+											<?php if (majors() == 'senior') { ?>
+												<tr>
+													<td>Nama Abjad</td>
+													<td>:</td>
+													<?php foreach ($siswa as $row) : ?>
+														<?php echo (isset($f['n']) and $f['r'] == $row['student_nis']) ?
+															'<td>' . $row['majors_name'] . '</td>' : '' ?>
+													<?php endforeach; ?>
+												</tr>
+											<?php } ?>
+										</tbody>
+									</table>
+								</div>
+								<div class="col-md-3">
+									<?php foreach ($siswa as $row) : ?>
+										<?php if (isset($f['n']) and $f['r'] == $row['student_nis']) { ?>
+											<?php if (!empty($row['student_img'])) { ?>
+												<img src="<?php echo upload_url('student/' . $row['student_img']) ?>" class="img-thumbnail img-responsive">
+											<?php } else { ?>
+												<img src="<?php echo media_url('img/user.png') ?>" class="img-thumbnail img-responsive">
+										<?php }
+										} ?>
+									<?php endforeach; ?>
+								</div>
 							</div>
 						</div>
 					</div>
 
 					<div class="row">
-						<div class="col-md-5">
+						<div class="col-md-12">
 							<div class="box box-success">
 								<div class="box-header with-border">
 									<h3 class="box-title">Transaksi Terakhir</h3>
+									<a class="btn btn-danger btn-xs pull-right" onclick="printDiv('printabletransaksi')"><i class="fa fa-file-pdf-o"></i> Download</a>
 								</div>
 								<!-- /.box-header -->
 								<div class="box-body">
-									<table class="table table-responsive table-bordered" style="white-space: nowrap;">
-										<tr class="success">
-											<th>Pembayaran</th>
-											<th>Tagihan</th>
-											<th>Tanggal</th>
-										</tr>
-										<?php
-										foreach ($log as $key) :
-										?>
-											<tr>
-												<td><?php echo ($key['bulan_bulan_id'] != NULL) ? $key['posmonth_name'] . ' - T.A ' . $key['period_start_month'] . '/' . $key['period_end_month'] . ' (' . $key['month_name'] . ')' : $key['posbebas_name'] . ' - T.A ' . $key['period_start_bebas'] . '/' . $key['period_end_bebas'] ?></td>
-												<td><?php echo ($key['bulan_bulan_id'] != NULL) ? 'Rp. ' . number_format($key['bulan_bill'], 0, ',', '.') : 'Rp. ' . number_format($key['bebas_pay_bill'], 0, ',', '.') ?></td>
-												<td><?php echo pretty_date($key['log_trx_input_date'], 'd F Y', false)  ?></td>
+									<div id="printabletransaksi">
+										<table class="table table-responsive table-bordered" style="white-space: nowrap;">
+											<tr class="success">
+												<th>Pembayaran</th>
+												<th>Tagihan</th>
+												<th>Tanggal</th>
 											</tr>
-										<?php endforeach ?>
+											<?php
+											foreach ($log as $key) :
+											?>
+												<tr>
+													<td><?php echo ($key['bulan_bulan_id'] != NULL) ? $key['posmonth_name'] . ' - T.A ' . $key['period_start_month'] . '/' . $key['period_end_month'] . ' (' . $key['month_name'] . ')' : $key['posbebas_name'] . ' - T.A ' . $key['period_start_bebas'] . '/' . $key['period_end_bebas'] ?></td>
+													<td><?php echo ($key['bulan_bulan_id'] != NULL) ? 'Rp. ' . number_format($key['bulan_bill'], 0, ',', '.') : 'Rp. ' . number_format($key['bebas_pay_bill'], 0, ',', '.') ?></td>
+													<td><?php echo pretty_date($key['log_trx_input_date'], 'd F Y', false)  ?></td>
+												</tr>
+											<?php endforeach ?>
 
-									</table>
-								</div>
-							</div>
-						</div>
-
-						<!-- <div class="col-md-4">
-							<div class="box box-success">
-								<div class="box-header with-border">
-									<h3 class="box-title">Pembayaran</h3>
-								</div>
-								<div class="box-body">
-									<form id="calcu" name="calcu" method="post" action="">
-										<div class="row">
-											<div class="col-md-6">
-												<div class="form-group">
-													<label>Total</label>
-													<input type="text" class="form-control numeric" value="<?php echo $cash + $cashb ?>" name="harga" id="harga" placeholder="Total Pembayaran" onfocus="startCalculate()" onblur="stopCalc()">
-												</div>
-											</div>
-											<div class="col-md-6">
-												<div class="form-group">
-													<label>Dibayar</label>
-													<input type="text" class="form-control numeric" value="<?php echo $cash + $cashb ?>" name="bayar" id="bayar" placeholder="Jumlah Uang" onfocus="startCalculate()" onblur="stopCalc()">
-												</div>
-											</div>
-										</div>
-										<div class="form-group">
-											<label>Kembalian</label>
-											<input type="text" class="form-control numeric" readonly="" name="kembalian" id="kembalian" onblur="stopCalc()">
-										</div>
-									</form>
-								</div>
-							</div>
-						</div> -->
-
-						<div class="col-md-3">
-							<div class="box box-success">
-								<div class="box-header with-border">
-									<h3 class="box-title">Cetak Bukti Pembayaran</h3>
-								</div><!-- /.box-header -->
-								<div class="box-body">
-									<form action="<?php echo site_url('manage/payout/cetakBukti') ?>" method="GET" class="view-pdf">
-										<input type="hidden" name="n" value="<?php echo $f['n'] ?>">
-										<input type="hidden" name="r" value="<?php echo $f['r'] ?>">
-										<div class="form-group">
-											<label>Tanggal Transaksi</label>
-											<div class="input-group date " data-date="<?php echo date('Y-m-d') ?>" data-date-format="yyyy-mm-dd">
-												<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-												<input class="form-control" readonly="" required="" type="text" name="d" value="<?php echo date('Y-m-d') ?>">
-											</div>
-										</div>
-										<button class="btn btn-success btn-block" formtarget="_blank" type="submit"><i class="fa fa-print"></i> Cetak Bukti Pembayaran</button>
-									</form>
+										</table>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -212,9 +166,9 @@
 						<div class="box box-success">
 							<div class="box-header with-border">
 								<h3 class="box-title">Jenis Pembayaran</h3>
+								<a class="btn btn-danger pull-right btn-xs" onclick="printDiv('printableArea')"><i class="fa fa-file-pdf-o"></i> Download</a>
 							</div><!-- /.box-header -->
 							<div class="box-body">
-								<a class="btn btn-success pull-right" onclick="printDiv('printableArea')"><i class="fa fa-file-pdf-o"></i> Download</a>
 								<div id="printableArea">
 									<div class="text-center">
 										<img src="http://localhost:99/spp/uploads/school/Madrasah_Aliyah_(MA)_Negeri_2_Andalusia1.png" height="100">
@@ -256,7 +210,7 @@
 															<td class="<?php echo ($key['bulan_status'] == 1) ? 'success' : 'danger' ?> text-center"><?php echo ($key['bulan_status'] == 1) ? pretty_date($key['bulan_date_pay'], 'd/m/y', false) : '' ?></td>
 															<td class="<?php echo ($key['bulan_status'] == 1) ? 'success' : 'danger' ?> text-center">
 																	<?php if ($key['bulan_status'] == 1) { ?> 
-																		<button href="<?php echo site_url('manage/payout/not_pay/' . $key['payment_payment_id'] . '/' . $key['student_student_id'] . '/' . $key['bulan_id']) ?>" class="btn btn-danger btn-xs pull-right"><i class="fa fa-trash"></i> Hapus</button>
+																		<a href="<?php echo site_url('manage/payout/not_pay/' . $key['payment_payment_id'] . '/' . $key['student_student_id'] . '/' . $key['bulan_id']) ?>" class="btn btn-danger btn-xs pull-right"><i class="fa fa-trash"></i> Hapus</a>
 																	<?php } else { ?> 
 																		<a href="<?php echo site_url('manage/payout/pay/' . $key['payment_payment_id'] . '/' . $row['student_student_id'] . '/' . $key['bulan_id']) ?>"  onclick="return confirm('Anda Akan Melakukan Pembayaran bulan ' . $key['month_name'] . '?')" class="btn btn-success btn-xs pull-right"><i class="fa fa-save"></i> Konfirmasi</a>
 																	<?php } ?>
