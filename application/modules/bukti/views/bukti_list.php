@@ -20,7 +20,7 @@
 						<div class="box-tools">
 							<?php echo form_open(current_url(), array('class' => 'form-horizontal', 'method' => 'get')) ?>
 							<div class="input-group input-group-sm" style="width: 250px;">
-								<input type="text" id="field" autofocus name="n" <?php echo (isset($f['n'])) ? 'placeholder="' . $f['n'] . '"' : 'placeholder="Cari Nama/Jenis Pembayaran"' ?> class="form-control">
+								<input type="text" id="field" autofocus name="n" <?php echo (isset($f['n'])) ? 'placeholder="' . $f['n'] . '"' : 'placeholder="Cari Nama Siswa"' ?> class="form-control">
 								<div class="input-group-btn">
 									<button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
 								</div>
@@ -46,7 +46,7 @@
 								?>
 										<tr>
 											<td><?php echo $row['student_full_name']; ?></td>
-											<td><?php echo 10000; ?></td>
+											<td><?php echo 'Rp.'.number_format($row['nilai'], 0, ',', '.'); ?></td>
 											<td><?php echo $row['pos_name'] . ' - T.P ' . $row['period_start'] . '/' . $row['period_end']; ?></td>
 											<td><?php echo $row['description']; ?></td>
 											<td>
@@ -60,15 +60,15 @@
 												<?php break; } ?>
 											</td>
 											<td>
-												<?php if ($row['status'] == 0) { ?>
-													<a data-toggle="tooltip" data-placement="top" title="Ubah" class="btn btn-success btn-xs" href="<?php echo site_url('manage/bukti/Approve/' . $row['id']) ?>">
+												<?php if ($row['status'] == 0 && $userRole <> 3) { ?>
+													<a data-toggle="tooltip" data-placement="top" title="Approve" class="btn btn-success btn-xs" href="<?php echo site_url('manage/bukti/Approve/' . $row['id']) ?>">
 														Approve
 													</a>
-													<a data-toggle="tooltip" data-placement="top" title="Ubah" class="btn btn-danger btn-xs" href="<?php echo site_url('manage/bukti/Reject/' . $row['id']) ?>">
+													<a data-toggle="tooltip" data-placement="top" title="Reject" class="btn btn-danger btn-xs" href="<?php echo site_url('manage/bukti/Reject/' . $row['id']) ?>">
 														Reject
 													</a>
 												<?php } ?>
-												<a href="<?php echo site_url('manage/bukti/edit/' . $row['id']) ?>" class="btn btn-xs btn-success" data-toggle="tooltip" title="Edit"><i class="fa fa-edit"></i></a>
+												<a href="<?php echo site_url('manage/bukti/edit/' . $row['id']) ?>" class="btn btn-xs btn-primary" data-toggle="tooltip" title="Detail"><i class="fa fa-search"></i></a>
 											</td>
 										</tr>
 									<?php

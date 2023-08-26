@@ -2,13 +2,22 @@
 
 if (isset($payment)) {
 
-	// $inputTypeValue = $payment['payment_type'];
 	$inputPeriodValue = $payment['period_period_id'];
 	$inputPosValue = $payment['pos_pos_id'];
+	$inputNilaiValue = $payment['nilai'];
+	$inputBuktiFoto = $payment['upload_image'];
+	$inputStudentValue = $payment['student_id'];
+	$inputdescriptionValue = $payment['description'];
 } else {
-	// $inputTypeValue = set_value('payment_type');
 	$inputPeriodValue = set_value('period_id');
 	$inputPosValue = set_value('pos_id');
+	$inputNilaiValue = set_value('nilai');
+	$inputBuktiFoto = set_value('image');
+	$inputStudentValue = set_value('idStudent');
+	if($userRole == 3){
+		$inputStudentValue = $GetStudentID;
+	  }
+	$inputdescriptionValue = set_value('description');
 }
 ?>
 
@@ -37,8 +46,19 @@ if (isset($payment)) {
 					<div class="box-body">
 						<?php echo validation_errors(); ?>
 						<?php if (isset($payment)) { ?>
-							<input type="hidden" name="payment_id" value="<?php echo $payment['id']; ?>">
+							<input type="hidden" name="id" value="<?php echo $payment['id']; ?>">
 						<?php } ?>
+						<input type="hidden" name="GetStudentIDs" value="<?php echo $GetStudentID; ?>">
+
+						<div class="form-group">
+							<label>Nama Siswa <small data-toggle="tooltip" title="Wajib diisi">*</small></label>
+							<select name="student_id" class="form-control" <?php echo $userRole == 3 ? 'disabled' :'' ?>>
+								<option value="">-Pilih Nama Siswa-</option>
+								<?php foreach ($student as $row) : ?>
+									<option value="<?php echo $row['student_id']; ?>" <?php echo ($inputStudentValue == $row['student_id']) ? 'selected' : '' ?>><?php echo $row['student_full_name']." - ".$row['class_name']." - ".$row['majors_name']; ?></option>
+								<?php endforeach; ?>
+							</select>
+						</div>
 
 						<div class="form-group">
 							<label>Nama Pembayaran <small data-toggle="tooltip" title="Wajib diisi">*</small></label>
@@ -60,14 +80,15 @@ if (isset($payment)) {
 							</select>
 						</div>
 
-						<!-- <div class="form-group">
-							<label>Tipe <small data-toggle="tooltip" title="Wajib diisi">*</small></label><br>
-							<select name="payment_type" class="form-control" required="">
-								<option value="">-Pilih Tipe-</option>
-								<option value="BULAN" <?php echo ($inputTypeValue == 'BULAN') ? 'selected' : '' ?>>Bulanan</option>
-								<option value="BEBAS" <?php echo ($inputTypeValue == 'BEBAS') ? 'selected' : '' ?>>Bebas</option>
-							</select>
-						</div> -->
+						<div class="form-group">
+							<label>Total Bayar <small data-toggle="tooltip" title="Wajib diisi">*</small></label>
+							<input name="nilai" type="text" id="allTarif"  class="form-control numeric" value="<?php echo $inputNilaiValue; ?>">
+						</div>
+
+						<div class="form-group">
+							<label>Keterangan <small data-toggle="tooltip" title="Wajib diisi">*</small></label>
+							<textarea class="form-control" name="description" placeholder="Keterangan"><?php echo $inputdescriptionValue ?></textarea>
+						</div>
 
 						<p class="text-muted">*) Kolom wajib diisi.</p>
 					</div>
@@ -78,9 +99,21 @@ if (isset($payment)) {
 				<div class="box box-success">
 					<!-- /.box-header -->
 					<div class="box-body">
-						<button type="submit" class="btn btn-block btn-success"><i class="fa fa-save"></i> Simpan</button>
+						<label>Bukti Bayar</label>
+						<a href="#" class="thumbnail">
+							<?php if (isset($inputBuktiFoto) and $inputBuktiFoto != NULL) { ?>
+								<img src="<?php echo upload_url('ubukti/' . $inputBuktiFoto) ?>" class="img-responsive avatar">
+							<?php } else { ?>
+								<img id="target" alt="Choose image to upload">
+							<?php } ?>
+						</a>
+						<input type='file' id="image" name="image">
+						<br>
+						<?php if (!isset($payment['id']) || ((isset($payment['id']) && ($payment['status'] == 0)))) { ?>
+							<button type="submit" class="btn btn-block btn-success"><i class="fa fa-save"></i> Simpan</button>
+						<?php } ?>
 						<a href="<?php echo site_url('manage/bukti'); ?>" class="btn btn-block btn-info"><i class="fa fa-repeat"></i> Batal</a>
-						<?php if (isset($payment['id'])) { ?>
+						<?php if (isset($payment['id']) && $payment['status'] == 0) { ?>
 							<button type="button" onclick="getId(<?php echo $payment['id'] ?>)" class="btn btn-danger btn-block" data-toggle="modal" data-target="#deletePayment"><i class="fa fa-close"></i> Hapus
 							</button>
 						<?php } ?>
@@ -105,7 +138,7 @@ if (isset($payment)) {
 					<form action="<?php echo site_url('manage/bukti/delete') ?>" method="POST">
 						<div class="modal-body">
 							<p>Apakah anda akan menghapus data ini?</p>
-							<input type="hidden" name="payment_id" id="paymentId">
+							<input type="hidden" name="id" id="id" value="<?php echo $payment['id']; ?>">
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>

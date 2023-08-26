@@ -12,7 +12,7 @@
       <div class="col-md-12">
         <div class="box box-success">
           <div class="box-body bg-success">
-            <div class="col-md-4 col-sm-6 col-xs-12" style="margin-top: 10px;">
+            <div class="col-md-3 col-sm-6 col-xs-12" style="margin-top: 10px;">
               <div class="info-box">
                 <span class="info-box-icon bg-blue"><i class="fa fa-random"></i></span>
                 <div class="info-box-content">
@@ -31,7 +31,7 @@
                 </div>
               </div>
             </div> -->
-            <div class="col-md-4 col-sm-6 col-xs-12" style="margin-top: 10px;">
+            <div class="col-md-3 col-sm-6 col-xs-12" style="margin-top: 10px;">
               <div class="info-box">
                 <span class="info-box-icon bg-green"><i class="fa fa-tags"></i></span>
 
@@ -44,13 +44,23 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-4 col-sm-6 col-xs-12" style="margin-top: 10px;">
+            <div class="col-md-3 col-sm-6 col-xs-12" style="margin-top: 10px;">
               <div class="info-box">
                 <span class="info-box-icon bg-yellow"><i class="fa fa-user"></i></span>
 
                 <div class="info-box-content">
                   <span class="info-box-text dash-text">Siswa Aktif</span>
                   <span class="info-box-number"><?php echo $student ?></span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12" style="margin-top: 10px;">
+              <div class="info-box">
+                <span class="info-box-icon bg-red"><i class="fa fa-money"></i></span>
+
+                <div class="info-box-content">
+                  <span class="info-box-text dash-text">Konfirmasi Bayar</span>
+                  <span class="info-box-number"><?php echo 'Rp. ' . number_format($bukti_bayar, 0, ',', '.') ?></span>
                 </div>
               </div>
             </div>

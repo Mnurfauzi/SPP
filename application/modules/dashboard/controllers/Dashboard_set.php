@@ -11,7 +11,7 @@ class Dashboard_set extends CI_Controller {
             header("Location:" . site_url('manage/auth/login') . "?location=" . urlencode($_SERVER['REQUEST_URI']));
         }
         $this->load->model(array('users/Users_model', 'holiday/Holiday_model'));
-        $this->load->model(array('student/Student_model', 'kredit/Kredit_model', 'debit/Debit_model', 'bulan/Bulan_model', 'setting/Setting_model', 'information/Information_model', 'bebas/Bebas_model', 'bebas/Bebas_pay_model'));
+        $this->load->model(array('student/Student_model','bukti/Bukti_model', 'kredit/Kredit_model', 'debit/Debit_model', 'bulan/Bulan_model', 'setting/Setting_model', 'information/Information_model', 'bebas/Bebas_model', 'bebas/Bebas_pay_model'));
         $this->load->library('user_agent');
     }
 
@@ -24,6 +24,10 @@ class Dashboard_set extends CI_Controller {
         $data['debit'] = $this->Debit_model->get(array('date'=> date('Y-m-d')));
         $data['bulan_day'] = $this->Bulan_model->get_total(array('status'=>1, 'date'=> date('Y-m-d')));
         $data['bebas_day'] = $this->Bebas_pay_model->get(array('date'=> date('Y-m-d')));
+
+        $databukti = $this->db->query("select sum(nilai) as nilai from buktibayar where status = 0");
+		$res = $databukti -> result_array();
+        $data['bukti_bayar'] = $res[0]['nilai'];
 
         $datapeng = $this->db->query("SELECT * FROM pengumuman");
 		$res = $datapeng -> result_array();
