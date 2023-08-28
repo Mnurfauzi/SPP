@@ -8,7 +8,7 @@ class Report_set extends CI_Controller {
 		if ($this->session->userdata('logged') == NULL) {
 			header("Location:" . site_url('manage/auth/login') . "?location=" . urlencode($_SERVER['REQUEST_URI']));
 		}
-		$this->load->model(array('payment/Payment_model', 'student/Student_model', 'period/Period_model', 'pos/Pos_model', 'bulan/Bulan_model', 'bebas/Bebas_model', 'bebas/Bebas_pay_model', 'setting/Setting_model', 'kredit/Kredit_model', 'debit/Debit_model', 'logs/Logs_model'));
+		$this->load->model(array('payment/Payment_model', 'student/Student_model', 'period/Period_model', 'pos/Pos_model', 'bulan/Bulan_model', 'bebas/Bebas_model', 'bebas/Bebas_pay_model', 'setting/Setting_model', 'kredit/Kredit_model', 'debit/Debit_model', 'logs/Logs_model', 'ltrx/Log_trx_model'));
 
 	}
 
@@ -22,7 +22,7 @@ class Report_set extends CI_Controller {
 
 		$params = array();
 
-    // Date start
+    	// Date start
 		if (isset($q['ds']) && !empty($q['ds']) && $q['ds'] != '') {
 			$params['date_start'] = $q['ds'];
 		}
@@ -42,7 +42,7 @@ class Report_set extends CI_Controller {
 		$data['bebas'] = $this->Bebas_model->get(array('grup'=>true));
 		$data['free'] = $this->Bebas_model->get($params);
 		$data['dom'] = $this->Bebas_pay_model->get($params);
-
+		$data['log'] = $this->Log_trx_model->get($params);
 
 		$config['base_url'] = site_url('manage/report/index');
 		$config['suffix'] = '?' . http_build_query($_GET, '', "&");

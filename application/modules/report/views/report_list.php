@@ -37,9 +37,39 @@
 							<div class="col-md-4">
 								<button type="submit" class="btn btn-primary"><i class="fa fa-filter"></i> Filter Data</button>
 								<?php if ($q) { ?>
-									<a class="btn btn-success" href="<?php echo site_url('manage/report/report' . '/?' . http_build_query($q)) ?>"><i class="fa fa-file-excel-o"></i> Export Excel</a>
+									<a class="btn btn-danger btn-md" onclick="printDiv('printableArea')"><i class="fa fa-file-pdf-o"></i> Download</a>
 								<?php } ?>
 							</div>
+						</div>
+						<div id="printableArea">
+							<table class="table table-responsive table-bordered" style="white-space: nowrap;">
+								<tr class="success">
+									<th>Jenis Pembayaran</th>
+									<th>Tahun Pelajaran</th>
+									<th>Periode</th>
+									<th>Tanggal</th>
+									<th>Nama Siswa</th>
+									<th>Tagihan</th>
+								</tr>
+								<?php
+								$total = 0;
+								foreach ($log as $key) :
+								?>
+									<tr>
+										<td><?php echo ($key['bulan_bulan_id'] != NULL) ? $key['posmonth_name'] : $key['posbebas_name'] ?></td>
+										<td><?php echo ($key['bulan_bulan_id'] != NULL) ? 'T.A ' . $key['period_start_month'] . '/' . $key['period_end_month'] : 'T.A ' . $key['period_start_bebas'] . '/' . $key['period_end_bebas'] ?></td>
+										<td><?php echo ($key['bulan_bulan_id'] != NULL) ? $key['month_name'] : '(Bebas)' ?></td>
+										<td><?php echo pretty_date($key['log_trx_input_date'], 'd F Y', false)  ?></td>
+										<td><?php echo $key['student_full_name'] ?></td>
+										<td><?php echo ($key['bulan_bulan_id'] != NULL) ? 'Rp. ' . number_format($key['bulan_bill'], 0, ',', '.') : 'Rp. ' . number_format($key['bebas_pay_bill'], 0, ',', '.') ?></td>
+									</tr>
+								<?php $total += $key['bebas_pay_bill'] + $key['bulan_bill']; endforeach ?>
+								<tr>
+									<td colspan="5" class="text-right"><h4>Total</h4></td>
+									<td><h4><?php echo 'Rp. ' . number_format($total, 0, ',', '.'); ?></h4></td>
+								</tr>
+
+							</table>
 						</div>
 					</div>
 

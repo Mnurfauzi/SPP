@@ -42,6 +42,12 @@ class Log_trx_model extends CI_Model {
             $this->db->where('log_trx_last_update', $params['log_trx_last_update']);
         }
 
+        if(isset($params['date_start']) AND isset($params['date_end']))
+        {
+            $this->db->where('log_trx_input_date >=', $params['date_start'] . ' 00:00:00');
+            $this->db->where('log_trx_input_date <=', $params['date_end'] . ' 23:59:59');
+        }
+
         if (isset($params['limit'])) {
             if (!isset($params['offset'])) {
                 $params['offset'] = NULL;
@@ -56,7 +62,7 @@ class Log_trx_model extends CI_Model {
             $this->db->order_by('log_trx_id', 'desc');
         }
         $this->db->select('log_trx.log_trx_id, log_trx_input_date, log_trx_last_update');
-        $this->db->select('bulan_bulan_id, log_trx.student_student_id, student_nis, bulan_bill, month_name, bebas_pay_bill');
+        $this->db->select('bulan_bulan_id, log_trx.student_student_id, student_nis, student_full_name, bulan_bill, month_name, bebas_pay_bill');
 
         $this->db->select('posMonth.pos_name AS posmonth_name, posBebas.pos_name AS posbebas_name, periodMonth.period_start AS period_start_month, periodMonth.period_end AS period_end_month');
         $this->db->select('periodBebas.period_start AS period_start_bebas, periodBebas.period_end AS period_end_bebas');
