@@ -18,7 +18,7 @@ class Dashboard_set extends CI_Controller {
     public function index() {
         $id = $this->session->userdata('uid'); 
         $data['user'] = count($this->Users_model->get());
-        $data['student'] = count($this->Student_model->get(array('status'=>1)));
+        $data['student'] = count($this->Student_model->get(array('status'=>1, 'group' => TRUE)));
         $data['kredit'] = $this->Kredit_model->get(array('date'=> date('Y-m-d')));
         $data['information'] = $this->Information_model->get(array('information_publish'=>1));
         $data['debit'] = $this->Debit_model->get(array('date'=> date('Y-m-d')));

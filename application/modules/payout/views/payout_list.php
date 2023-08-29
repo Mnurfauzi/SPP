@@ -161,7 +161,7 @@
 							</div>
 						</div>
 					</div>
-					<?php if ($this->session->userdata('uroleid') <> USER) { ?>
+					<?php if (true) { ?>
 						<!-- List Tagihan Bulanan -->
 						<div class="box box-success">
 							<div class="box-header with-border">
@@ -171,7 +171,7 @@
 							<div class="box-body">
 								<div id="printableArea">
 									<div class="text-center">
-										<img src="http://localhost:99/spp/uploads/school/Madrasah_Aliyah_(MA)_Negeri_2_Andalusia1.png" height="100">
+										<img src="http://localhost/spp/uploads/school/Madrasah_Aliyah_(MA)_Negeri_2_Andalusia1.png" height="100">
 										<h3>Rekap Transaksi Siswa</h3>
 									</div>
 									
@@ -184,7 +184,9 @@
 													<th>Nama Pembayaran / Bulan</th>
 													<th class="text-center">Sisa Tagihan</th>
 													<th class="text-center">Tanggal</th>
-													<th class="text-center">Action</th>
+													<?php if ($this->session->userdata('uroleid') <> USER) {?>
+														<th class="text-center">Action</th>
+													<?php }?>
 												</tr>
 											</thead>
 											<tbody>
@@ -200,7 +202,9 @@
 																<td class="text-center"><?php echo $key['pos_name'] . ' - T.A ' . $key['period_start'] . '/' . $key['period_end'] ?></td>
 																<td class="text-center"><?php echo ($total == $pay) ? 'Rp. -' : 'Rp. ' . number_format($total - $pay, 0, ',', '.') ?></td>
 																<td class="text-center">&nbsp;</td>
-																<td class="text-center">&nbsp;</td>
+																<?php if ($this->session->userdata('uroleid') <> USER) {?>
+																	<td class="text-center">&nbsp;</td>
+																<?php }?>
 															</tr>
 															<?php }?>
 															<tr>
@@ -208,6 +212,7 @@
 																<td class="text-center"><?php echo $key['month_name'] ?></td>
 																<td class="<?php echo ($key['bulan_status'] == 1) ? 'success' : 'danger' ?> text-center">Rp. <?php echo number_format($key['bulan_bill'], 0, ',', '.') ?></td>
 																<td class="<?php echo ($key['bulan_status'] == 1) ? 'success' : 'danger' ?> text-center"><?php echo ($key['bulan_status'] == 1) ? pretty_date($key['bulan_date_pay'], 'd/m/y', false) : '' ?></td>
+																<?php if ($this->session->userdata('uroleid') <> USER) {?>
 																<td class="<?php echo ($key['bulan_status'] == 1) ? 'success' : 'danger' ?> text-center">
 																		<?php if ($key['bulan_status'] == 1) { ?> 
 																			<a href="<?php echo site_url('manage/payout/not_pay/' . $key['payment_payment_id'] . '/' . $key['student_student_id'] . '/' . $key['bulan_id']) ?>" class="btn btn-danger btn-xs pull-right"><i class="fa fa-trash"></i> Hapus</a>
@@ -215,6 +220,7 @@
 																			<a href="<?php echo site_url('manage/payout/pay/' . $key['payment_payment_id'] . '/' . $row['student_student_id'] . '/' . $key['bulan_id']) ?>"  onclick="return confirm('Anda Akan Melakukan Pembayaran bulan ' . $key['month_name'] . '?')" class="btn btn-success btn-xs pull-right"><i class="fa fa-save"></i> Konfirmasi</a>
 																		<?php } ?>
 																</td>
+																<?php }?>
 															</tr>
 															<?php }?>
 														<?php $Payid = $key['payment_payment_id']; $i++; endforeach ?>
@@ -234,8 +240,10 @@
 													<th>Jenis Pembayaran</th>
 													<th>Total Tagihan</th>
 													<th>Dibayar</th>
+													<?php if ($this->session->userdata('uroleid') <> USER) {?>
 													<th>Status</th>
 													<th>Bayar</th>
+													<?php }?>
 												</tr>
 											</thead>
 											<tbody>
@@ -250,10 +258,12 @@
 															<td style="background-color: #fff !important;"><?php echo $row['pos_name'] . ' - T.A ' . $row['period_start'] . '/' . $row['period_end'] ?></td>
 															<td><?php echo 'Rp. ' . number_format($sisa, 0, ',', '.') ?></td>
 															<td><?php echo 'Rp. ' . number_format($row['bebas_total_pay'], 0, ',', '.') ?></td>
+															<?php if ($this->session->userdata('uroleid') <> USER) {?>
 															<td><a href="<?php echo site_url('manage/payout/payout_bebas/' . $row['payment_payment_id'] . '/' . $row['student_student_id'] . '/' . $row['bebas_id']) ?>" class="view-cicilan label <?php echo ($row['bebas_bill'] == $row['bebas_total_pay']) ? 'label-success' : 'label-warning' ?>"><?php echo ($row['bebas_bill'] == $row['bebas_total_pay']) ? 'Lunas' : 'Belum Lunas' ?></a></td>
 															<td width="40" style="text-align:center">
 																<a data-toggle="modal" class="btn btn-success btn-xs <?php echo ($row['bebas_bill'] == $row['bebas_total_pay']) ? 'disabled' : '' ?>" title="Bayar" href="#addCicilan<?php echo $row['bebas_id'] ?>"><span class="fa fa-money"></span> <b>Bayar</b></a>
 															</td>
+															<?php }?>
 														</tr>
 
 														<div class="modal fade" id="addCicilan<?php echo $row['bebas_id'] ?>" role="dialog">

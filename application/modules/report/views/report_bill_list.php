@@ -55,7 +55,7 @@
 								<div style="margin-top:25px;">
 									<button type="submit" class="btn btn-primary"><i class="fa fa-filter"></i> Filter Data</button>
 									<?php if ($q and !empty($py)) { ?>
-										<a class="btn btn-success" onclick="printDiv('printableArea')"><i class="fa fa-file-excel-o"></i> Export Excel</a>
+										<a class="btn btn-danger" onclick="printDiv('printableArea')"><i class="fa fa-file-pdf-o"></i> Download</a>
 									<?php } ?>
 								</div>
 							</div>

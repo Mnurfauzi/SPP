@@ -472,7 +472,7 @@ class Payment_set extends CI_Controller
 
       if (!$this->input->post('payment_id')) {
 
-        $student = $this->Student_model->get(array('class_id' => $this->input->post('class_id')));
+        $student = $this->Student_model->get(array('class_id' => $this->input->post('class_id'), 'group' => TRUE));
         $check = $this->Bebas_model->get(array('class_id' => $this->input->post('class_id'), 'payment_id' => $id));
 
         foreach ($student as $row) {
@@ -518,7 +518,7 @@ class Payment_set extends CI_Controller
 
       if (!$this->input->post('payment_id')) {
 
-        $student = $this->Student_model->get(array('majors_id' => $this->input->post('majors_id'), 'class_id' => $this->input->post('class_id')));
+        $student = $this->Student_model->get(array('majors_id' => $this->input->post('majors_id'), 'class_id' => $this->input->post('class_id'), 'group' => TRUE));
         $check = $this->Bebas_model->get(array('majors_id' => $this->input->post('majors_id'), 'class_id' => $this->input->post('class_id'), 'payment_id' => $id));
 
         foreach ($student as $row) {

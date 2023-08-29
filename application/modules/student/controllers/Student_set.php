@@ -78,6 +78,7 @@ class Student_set extends CI_Controller
       if ($this->input->post('student_id')) {
         $params['student_id'] = $id;
       } else {
+        $this->InsertUser($this->input->post('student_nis'),$this->input->post('student_full_name'));
         $params['student_input_date'] = date('Y-m-d H:i:s');
         $params['student_password'] = sha1($this->input->post('student_password'));
       }
@@ -106,7 +107,6 @@ class Student_set extends CI_Controller
       $paramsupdate['student_id'] = $status;
       $this->Student_model->add($paramsupdate);
 
-      $this->InsertUser($this->input->post('student_nisn'),$this->input->post('student_full_name'));
       // activity log
       $this->load->model('logs/Logs_model');
       $this->Logs_model->add(
@@ -390,12 +390,13 @@ class Student_set extends CI_Controller
     if (isset($f['pr']) && !empty($f['pr']) && $f['pr'] != '') {
       $params['class_id'] = $f['pr'];
     }
+    $params['group'] = TRUE;
 
     $paramsPage = $params;
     $params['status'] = TRUE;
     $params['offset'] = $offset;
     $data['notpass'] = $this->Student_model->get($params);
-    $data['pass'] = $this->Student_model->get(array('status' => 0));
+    $data['pass'] = $this->Student_model->get(array('status' => 0, 'group' => TRUE));
     $data['class'] = $this->Student_model->get_class($params);
     $config['base_url'] = site_url('manage/student/index');
     $config['suffix'] = '?' . http_build_query($_GET, '', "&");
@@ -418,6 +419,7 @@ class Student_set extends CI_Controller
     }
 
     $params['status'] = 1;
+    $params['group'] = TRUE;
 
     $paramsPage = $params;
     $params['offset'] = $offset;
