@@ -93,8 +93,10 @@
 											<?php } ?>
 											<td><?php echo 'Rp. ' . number_format($row['bebas_bill'], 0, ',', '.') ?></td>
 											<td>
-												<a href="<?php echo site_url('manage/payment/edit_payment_bebas/' . $row['payment_payment_id'] . '/' . $row['student_student_id'] . '/' . $row['bebas_id']) ?>" class="btn btn-xs btn-warning" data-toggle="tooltip" title="Ubah Tarif"><i class="fa fa-edit"></i></a>
-												<a href="<?php echo site_url('manage/payment/delete_payment_bebas/' . $row['payment_payment_id'] . '/' . $row['student_student_id'] . '/' . $row['bebas_id']) ?>" class="btn btn-xs btn-danger" data-toggle="tooltip" title="Hapus Pembayaran" onclick="return confirm('<?php echo 'Apakah anda akan menghapus pembayaran a.n ' . $row['student_full_name'] . '?' ?>')"><i class="fa fa-trash"></i></a>
+												<?php if($row['bebas_bill'] > 0) { ?>
+												<a href="<?php echo site_url('manage/payment/edit_payment_bebas/' . $row['bebas_payment_payment_id'] . '/' . $row['bebas_student_student_id'] . '/' . $row['bebas_id']) ?>" class="btn btn-xs btn-warning" data-toggle="tooltip" title="Ubah Tarif"><i class="fa fa-edit"></i></a>
+												<!-- <a href="<?php echo site_url('manage/payment/delete_payment_bebas/' . $row['bebas_payment_payment_id'] . '/' . $row['bebas_student_student_id'] . '/' . $row['bebas_id']) ?>" class="btn btn-xs btn-danger" data-toggle="tooltip" title="Hapus Pembayaran" onclick="return confirm('<?php echo 'Apakah anda akan menghapus pembayaran a.n ' . $row['student_full_name'] . '?' ?>')"><i class="fa fa-trash"></i></a> -->
+												<?php } ?>
 											</td>
 										</tr>
 								<?php

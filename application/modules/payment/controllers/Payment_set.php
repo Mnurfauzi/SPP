@@ -174,7 +174,7 @@ class Payment_set extends CI_Controller
 
     $data['class'] = $this->Student_model->get_class($params);
     $data['majors'] = $this->Student_model->get_majors($params);
-    $data['student'] = $this->Bebas_model->get($params);
+    $data['student'] = $this->Student_model->get($params);
     $data['payment'] = $this->Payment_model->get(array('id' => $id));
     $data['title'] = 'Tarif Tagihan';
     $data['main'] = 'payment/payment_view_bebas';
@@ -211,16 +211,19 @@ class Payment_set extends CI_Controller
     }
 
     $this->load->library('form_validation');
-    $this->form_validation->set_rules('student_id', 'Pilih Kelas dan Siswa', 'trim|required|xss_clean');
+    $this->form_validation->set_rules('NIS', 'NIS Siswa Wajib Di isi', 'trim|required|xss_clean');
     $this->form_validation->set_rules('bulan_bill[]', 'Tarif Bulanan', 'trim|required|xss_clean');
     $this->form_validation->set_error_delimiters('<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>', '</div>');
 
     if ($_POST and $this->form_validation->run() == TRUE) {
 
-      if (!$this->input->post('payment_id')) {
+      if (!$this->input->post('payment_id')) 
+      {
+        $Getsiswa = $this->Student_model->get(array('student_nis' => $this->input->post('NIS')));
+        $StudID = $Getsiswa['student_id'];
 
         $month = $this->Bulan_model->get_month();
-        $check = $this->Bulan_model->get(array('student_id' => $this->input->post('student_id'), 'payment_id' => $id));
+        $check = $this->Bulan_model->get(array('student_id' => $StudID, 'payment_id' => $id));
         $title = $_POST['bulan_bill'];
         $cpt = count($_POST['bulan_bill']);
         $month = $_POST['month_id'];
@@ -230,7 +233,7 @@ class Payment_set extends CI_Controller
           $param['bulan_input_date'] = date('Y-m-d H:i:s');
           $param['bulan_last_update'] = date('Y-m-d H:i:s');
           $param['payment_id'] = $id;
-          $param['student_id'] = $this->input->post('student_id');
+          $param['student_id'] = $StudID;
 
           if (count($check) == 0) {
 
@@ -428,17 +431,20 @@ class Payment_set extends CI_Controller
 
     if ($_POST  == TRUE) {
 
-      if (!$this->input->post('payment_id')) {
+      if (!$this->input->post('payment_id')) 
+      {
+        $Getsiswa = $this->Student_model->get(array('student_nis' => $this->input->post('NIS')));
+        $StudID = $Getsiswa['student_id'];
 
-        $student = $this->Student_model->get(array('student_id' => $this->input->post('student_id')));
-        $check = $this->Bebas_model->get(array('student_id' => $this->input->post('student_id'), 'payment_id' => $id));
+        $student = $this->Student_model->get(array('student_id' => $StudID,'group' => TRUE));
+        $check = $this->Bebas_model->get(array('student_id' => $StudID, 'payment_id' => $id));
 
         foreach ($student as $row) {
           $param['bebas_bill'] = $this->input->post('bebas_bill');
           $param['bebas_input_date'] = date('Y-m-d H:i:s');
           $param['bebas_last_update'] = date('Y-m-d H:i:s');
           $param['payment_id'] = $id;
-          $param['student_id'] = $this->input->post('student_id');
+          $param['student_id'] = $StudID;
 
           if (count($check) == 0) {
 
@@ -573,7 +579,7 @@ class Payment_set extends CI_Controller
       $data['payment'] = $this->Payment_model->get(array('id' => $id));
       $data['bebas'] = $this->Bebas_model->get(array('payment_id' => $id, 'student_id' => $student_id));
 
-      $data['student'] = $this->Student_model->get(array('id' => $student_id));
+      $data['student'] = $this->Student_model->get(array('id' => $student_id,'group' => TRUE));
       $data['title'] = 'Edit Tarif Tagihan';
       $data['main'] = 'payment/payment_edit_bebas';
       $this->load->view('manage/layout', $data);

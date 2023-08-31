@@ -58,24 +58,15 @@ if (isset($bulan)) {
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="" class="col-sm-4 control-label">Kelas</label>
+									<label for="" class="col-sm-4 control-label">NIS Siswa</label>
 									<div class="col-sm-8">
-										<select id="selector" name="class_id" class="form-control" ng-model="class_id" ng-change="getStudent(class_id)">
-											<option value="">-- Pilih Kelas --</option>
-											<option ng-repeat="class in classes" ng-value="class.class_class_id">{{class.class_name}}</option>
-										</select>
+									<input autofocus="" type="text" name="NIS" placeholder="Masukan NIS Siswa" required="" class="form-control">
 									</div>
 								</div>
-
 								<div class="form-group">
-									<div id="selTask">
-										<label for="" class="col-sm-4 control-label">Siswa</label>
-										<div class="col-sm-8">
-											<select name="student_id" class="form-control">
-												<option value="">-- Pilih Siswa --</option>
-												<option ng-repeat="student in students" ng-selected="student_data.index == student.student_id" value="{{student.student_id}}">{{student.student_full_name}}</option>
-											</select>
-										</div>
+									<label for="" class="col-sm-4 control-label">&nbsp;</label>
+									<div class="col-sm-8">
+									<a href="<?php echo site_url('manage/student') ?>" class="btn btn-xs btn-success" style="margin-right: -15px;"><i class="fa fa-navicon"></i> Referensi Data Siswa</a>
 									</div>
 								</div>
 							</div>

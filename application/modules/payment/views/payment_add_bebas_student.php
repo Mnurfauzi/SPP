@@ -56,21 +56,15 @@
 								<table class="table">
 									<tbody>
 										<tr>
-											<td><strong>Kelas</strong></td>
+											<td><strong>NIS Siswa</strong></td>
 											<td>
-												<select id="selector" name="class_id" class="form-control" ng-model="class_id" ng-change="getStudent(class_id)">
-													<option value="">-- Pilih Kelas --</option>
-													<option ng-repeat="class in classes" ng-value="class.class_class_id">{{class.class_name}}</option>
-												</select>
+											<input autofocus="" type="text" name="NIS" placeholder="Masukan NIS Siswa" required="" class="form-control">
 											</td>
 										</tr>
-										<tr id="selTask">
-											<td><strong>Nama Siswa</strong></td>
+										<tr>
+											<td>&nbsp;</td>
 											<td>
-												<select name="student_id" class="form-control">
-													<option value="">-- Pilih Siswa --</option>
-													<option ng-repeat="student in students" ng-selected="student_data.index == student.student_id" value="{{student.student_id}}">{{student.student_full_name}}</option>
-												</select>
+												<a href="<?php echo site_url('manage/student') ?>" class="btn btn-xs btn-success" style="margin-right: -15px;"><i class="fa fa-navicon"></i> Referensi Data Siswa</a>
 											</td>
 										</tr>
 										<tr>

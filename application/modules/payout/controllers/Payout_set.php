@@ -67,6 +67,7 @@ class Payout_set extends CI_Controller
 
 
     $paramsPage = $params;
+    $data['setting_logo'] = $this->Setting_model->get(array('id' => 6));
     $data['period'] = $this->Period_model->get($params);
     $data['siswa'] = $this->Student_model->get(array('student_id' => $siswa['student_id'], 'group' => TRUE));
     $data['student'] = $this->Bulan_model->get($pay);

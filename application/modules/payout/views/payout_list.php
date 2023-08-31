@@ -171,7 +171,11 @@
 							<div class="box-body">
 								<div id="printableArea">
 									<div class="text-center">
-										<img src="http://localhost/spp/uploads/school/Madrasah_Aliyah_(MA)_Negeri_2_Andalusia1.png" height="100">
+									<?php if (isset($setting_logo) and $setting_logo['setting_value'] != NULL) { ?>
+										<img src="<?php echo upload_url('school/' . $setting_logo['setting_value']) ?>" style="height: 120px">
+									<?php } else { ?>
+										<img src="<?php echo media_url('img/missing_logo.gif') ?>" id="target" alt="Choose image to upload" height="100">
+									<?php } ?>
 										<h3>Rekap Transaksi Siswa</h3>
 									</div>
 									
@@ -215,9 +219,9 @@
 																<?php if ($this->session->userdata('uroleid') <> USER) {?>
 																<td class="<?php echo ($key['bulan_status'] == 1) ? 'success' : 'danger' ?> text-center">
 																		<?php if ($key['bulan_status'] == 1) { ?> 
-																			<a href="<?php echo site_url('manage/payout/not_pay/' . $key['payment_payment_id'] . '/' . $key['student_student_id'] . '/' . $key['bulan_id']) ?>" class="btn btn-danger btn-xs pull-right"><i class="fa fa-trash"></i> Hapus</a>
+																			<button onclick="window.location='<?php echo site_url('manage/payout/not_pay/' . $key['payment_payment_id'] . '/' . $key['student_student_id'] . '/' . $key['bulan_id']) ?>';" class="btn btn-danger btn-xs pull-right"><i class="fa fa-trash"></i> Hapus</button>
 																		<?php } else { ?> 
-																			<a href="<?php echo site_url('manage/payout/pay/' . $key['payment_payment_id'] . '/' . $row['student_student_id'] . '/' . $key['bulan_id']) ?>"  onclick="return confirm('Anda Akan Melakukan Pembayaran bulan ' . $key['month_name'] . '?')" class="btn btn-success btn-xs pull-right"><i class="fa fa-save"></i> Konfirmasi</a>
+																			<button onclick="window.location='<?php echo site_url('manage/payout/pay/' . $key['payment_payment_id'] . '/' . $row['student_student_id'] . '/' . $key['bulan_id']) ?>';"  onclick="return confirm('Anda Akan Melakukan Pembayaran bulan ' . $key['month_name'] . '?')" class="btn btn-success btn-xs pull-right"><i class="fa fa-save"></i> Konfirmasi</button>
 																		<?php } ?>
 																</td>
 																<?php }?>
@@ -259,7 +263,7 @@
 															<td><?php echo 'Rp. ' . number_format($sisa, 0, ',', '.') ?></td>
 															<td><?php echo 'Rp. ' . number_format($row['bebas_total_pay'], 0, ',', '.') ?></td>
 															<?php if ($this->session->userdata('uroleid') <> USER) {?>
-															<td><a href="<?php echo site_url('manage/payout/payout_bebas/' . $row['payment_payment_id'] . '/' . $row['student_student_id'] . '/' . $row['bebas_id']) ?>" class="view-cicilan label <?php echo ($row['bebas_bill'] == $row['bebas_total_pay']) ? 'label-success' : 'label-warning' ?>"><?php echo ($row['bebas_bill'] == $row['bebas_total_pay']) ? 'Lunas' : 'Belum Lunas' ?></a></td>
+															<td><button onclick="location='<?php echo site_url('manage/payout/payout_bebas/' . $row['payment_payment_id'] . '/' . $row['student_student_id'] . '/' . $row['bebas_id']) ?>';" class="view-cicilan btn btn-xs <?php echo ($row['bebas_bill'] == $row['bebas_total_pay']) ? 'btn-success' : 'btn-warning' ?>"><?php echo ($row['bebas_bill'] == $row['bebas_total_pay']) ? 'Lunas' : 'Belum Lunas' ?></button></td>
 															<td width="40" style="text-align:center">
 																<a data-toggle="modal" class="btn btn-success btn-xs <?php echo ($row['bebas_bill'] == $row['bebas_total_pay']) ? 'disabled' : '' ?>" title="Bayar" href="#addCicilan<?php echo $row['bebas_id'] ?>"><span class="fa fa-money"></span> <b>Bayar</b></a>
 															</td>
