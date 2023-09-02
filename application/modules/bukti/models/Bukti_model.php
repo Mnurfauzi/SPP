@@ -25,12 +25,28 @@ class Bukti_model extends CI_Model
         }
 
         if (isset($params['search'])) {
-             $this->db->like('student_full_name', $params['search']);
-             $this->db->or_where('pos_name', $params['search']);
-             $this->db->or_where('description', $params['search']);
-             $this->db->or_where('period_start', $params['search']);
-             $this->db->or_where('period_end', $params['search']);
-             $this->db->or_where('nilai', $params['search']);
+            if($params['search'] == 'Pending'){
+                $this->db->where('status', 0);
+            }
+            else if($params['search'] == 'Approve'){
+                $this->db->where('status', 1);
+            }
+            else if($params['search'] == 'Reject'){
+                $this->db->where('status', 2);
+            }
+            else{
+                $this->db->like('student_full_name', $params['search']);
+                $this->db->or_like('pos_name', $params['search']);
+                $this->db->or_like('description', $params['search']);
+                $this->db->or_like('pos_name', $params['search']);
+                $this->db->or_like('period_start', $params['search']);
+                $this->db->or_like('period_end', $params['search']);
+                $this->db->or_like('nilai', $params['search']);
+            }
+        }
+
+        if (isset($params['statusbukti'])) {
+            $this->db->where('status', $params['statusbukti']);
         }
 
         // if (isset($params['status'])) {
@@ -44,6 +60,7 @@ class Bukti_model extends CI_Model
 
             $this->db->limit($params['limit'], $params['offset']);
         }
+        $this->db->order_by('status', 'asc');
 
         //query mentah SELECT * FROM `buktibayar` left join period on period.period_id = buktibayar.period_period_id left join pos on pos.pos_id = buktibayar.pos_pos_id left join student on student.student_id = buktibayar.student_student_id;
         $this->db->select('*');

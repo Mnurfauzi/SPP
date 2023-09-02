@@ -29,17 +29,18 @@ class Bukti_set extends CI_Controller
     if (isset($f['n']) && !empty($f['n']) && $f['n'] != '') {
       $params['search'] = $f['n'];
     }
+
     if($this->session->userdata('uroleid') == 3){
       $params['student_nis'] = $this->session->userdata('uemail');
     }
 
     $paramsPage = $params;
-    $params['limit'] = 5;
+    $params['limit'] = 50;
     $params['offset'] = $offset;
     $data['payment'] = $this->Bukti_model->get($params);
     $data['userRole'] = $this->session->userdata('uroleid');
 
-    $config['per_page'] = 5;
+    $config['per_page'] = 50;
     $config['uri_segment'] = 4;
     $config['base_url'] = site_url('manage/bukti/index');
     $config['suffix'] = '?' . http_build_query($_GET, '', "&");

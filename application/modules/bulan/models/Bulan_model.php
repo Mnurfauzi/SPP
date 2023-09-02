@@ -103,15 +103,25 @@ class Bulan_model extends CI_Model
 
             $this->db->limit($params['limit'], $params['offset']);
         }
-
-        // $this->db->order_by('month_month_id', 'asc');
         $this->db->order_by('pos_name,month_month_id,period_start', 'asc');
-        $this->db->select('bulan.bulan_id, bulan_bill, bulan_date_pay, bulan_number_pay, bulan_status, bulan_input_date, bulan_last_update');
-        $this->db->select('student_student_id, student_img, student_nis, student_full_name, student_name_of_mother, student_parent_phone, student.class_class_id, student.majors_majors_id, majors_name, majors_short_name, class_name');
-        $this->db->select('payment_payment_id, period_period_id, period_status, period_start, period_end, pos_name, payment_type');
-        $this->db->select('user_user_id, user_full_name');
-        $this->db->select('month_month_id, month_name');
-        $this->db->select('bulan.student_student_id, bulan.student_student_id');
+
+        if (isset($params['groupSum'])) {
+
+            $this->db->group_by('payment_payment_id,month_month_id,class.class_id');
+            $this->db->select('sum(bulan_bill) as bulan_bill, (SELECT SUM(B.bulan_bill) FROM `log_trx` A
+            left join bulan B on A.bulan_bulan_id = B.bulan_id 
+            left JOIN student C on B.student_student_id = c.student_id
+            WHERE B.payment_payment_id = bulan.payment_payment_id AND B.month_month_id = bulan.month_month_id and C.majors_majors_id = student.majors_majors_id) AS Bulan_Bayar');
+            $this->db->select('bulan_status,pos_name,period_start,period_end,month_name');
+        }
+        else{
+            $this->db->select('bulan.bulan_id, bulan_bill, bulan_date_pay, bulan_number_pay, bulan_status, bulan_input_date, bulan_last_update');
+            $this->db->select('student_student_id, student_img, student_nis, student_full_name, student_name_of_mother, student_parent_phone, student.class_class_id, student.majors_majors_id, majors_name, majors_short_name, class_name');
+            $this->db->select('payment_payment_id, period_period_id, period_status, period_start, period_end, pos_name, payment_type');
+            $this->db->select('user_user_id, user_full_name');
+            $this->db->select('month_month_id, month_name');
+            $this->db->select('bulan.student_student_id, bulan.student_student_id');
+        }
         $this->db->join('month', 'month.month_id = bulan.month_month_id', 'left');
         $this->db->join('student', 'student.student_id = bulan.student_student_id', 'left');
         $this->db->join('payment', 'payment.payment_id = bulan.payment_payment_id', 'left');

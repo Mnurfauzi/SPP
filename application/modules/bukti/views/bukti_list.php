@@ -16,11 +16,10 @@
 				<div class="box box-success">
 					<div class="box-header">
 						<a href="<?php echo site_url('manage/bukti/add') ?>" class="btn btn-sm btn-success"><i class="fa fa-plus"></i> Tambah Data</a>
-
 						<div class="box-tools">
 							<?php echo form_open(current_url(), array('class' => 'form-horizontal', 'method' => 'get')) ?>
 							<div class="input-group input-group-sm" style="width: 250px;">
-								<input type="text" id="field" autofocus name="n" <?php echo (isset($f['n'])) ? 'placeholder="' . $f['n'] . '"' : 'placeholder="Cari Nama Siswa"' ?> class="form-control">
+								<input type="text" id="field" autofocus name="n" <?php echo (isset($f['n'])) ? 'placeholder="' . $f['n'] . '"' : 'placeholder="Cari"' ?> class="form-control">
 								<div class="input-group-btn">
 									<button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
 								</div>

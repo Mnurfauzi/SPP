@@ -104,12 +104,18 @@ class Bebas_model extends CI_Model {
       $this->db->order_by('bebas_last_update', 'desc');
     }
 
+  if (isset($params['groupSum'])) {
+      $this->db->group_by('payment_payment_id');
+      $this->db->select('bebas.bebas_id, sum(bebas_bill) as bebas_bill, sum(bebas_total_pay) as bebas_total_pay, bebas_input_date, bebas_last_update');
+      $this->db->select('student_student_id,  student.class_class_id, class_name, student_full_name, student_nis, student_name_of_mother, student_parent_phone, student.majors_majors_id, majors_name, majors_short_name');
+      $this->db->select('payment_payment_id, pos_name, payment_type, period_period_id, period_start, period_end');
+  }
+  else{
     $this->db->select('bebas.bebas_id, bebas_bill, bebas_total_pay, bebas_input_date, bebas_last_update');
-
     $this->db->select('student_student_id,  student.class_class_id, class_name, student_full_name, student_nis, student_name_of_mother, student_parent_phone, student.majors_majors_id, majors_name, majors_short_name');
     $this->db->select('payment_payment_id, pos_name, payment_type, period_period_id, period_start, period_end');
+  }
     $this->db->join('student', 'student.student_id = bebas.student_student_id', 'left');
-
     $this->db->join('payment', 'payment.payment_id = bebas.payment_payment_id', 'left');
     $this->db->join('pos', 'pos.pos_id = payment.pos_pos_id', 'left');
     $this->db->join('class', 'class.class_id = student.class_class_id', 'left');

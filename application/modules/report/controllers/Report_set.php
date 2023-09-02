@@ -42,6 +42,7 @@ class Report_set extends CI_Controller {
 		$data['bebas'] = $this->Bebas_model->get(array('grup'=>true));
 		$data['free'] = $this->Bebas_model->get($params);
 		$data['dom'] = $this->Bebas_pay_model->get($params);
+		$params['group'] = true;
 		$data['log'] = $this->Log_trx_model->get($params);
 
 		$config['base_url'] = site_url('manage/report/index');
@@ -89,6 +90,7 @@ class Report_set extends CI_Controller {
 		$params['grup'] = TRUE;
 		$stu['group'] = TRUE;
 
+		$free['groupSum'] = TRUE;
 
 		$data['period'] = $this->Period_model->get($params);
 		$data['class'] = $this->Student_model->get_class($params);
