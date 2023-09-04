@@ -174,13 +174,20 @@ class Bebas_model extends CI_Model {
       $this->db->set('bebas_last_update', $data['bebas_last_update']);
     }
 
-    if (isset($data['bebas_id'])) {
-      $this->db->where('bebas_id', $data['bebas_id']);
+    if ($data['ModeEdit']) {
+      $this->db->where('student_student_id', $data['student_id']);
       $this->db->update('bebas');
-      $id = $data['bebas_id'];
-    } else {
-      $this->db->insert('bebas');
-      $id = $this->db->insert_id();
+      $id = $data['student_id'];
+    }
+    else{
+      if (isset($data['bebas_id'])) {
+        $this->db->where('bebas_id', $data['bebas_id']);
+        $this->db->update('bebas');
+        $id = $data['bebas_id'];
+      } else {
+        $this->db->insert('bebas');
+        $id = $this->db->insert_id();
+      }
     }
 
     $status = $this->db->affected_rows();

@@ -259,7 +259,7 @@ class Payment_set extends CI_Controller
     }
   }
 
-  public function add_payment_bulan($id = NULL)
+  public function add_payment_bulan($id = NULL, $edit = false)
   {
     if ($id == NULL) {
       redirect('manage/payment');
@@ -287,13 +287,18 @@ class Payment_set extends CI_Controller
             $param['bulan_last_update'] = date('Y-m-d H:i:s');
             $param['payment_id'] = $id;
             $param['student_id'] = $row['student_id'];
+            $param['ModeEdit'] = $edit;
 
-            if (count($check) == 0) {
-
+            if($edit){
               $this->Bulan_model->add($param);
-            } else {
-              $this->session->set_flashdata('failed', ' Duplikat Data');
-              redirect('manage/payment/view_bulan/' . $id);
+            }
+            else{
+              if (count($check) == 0) {
+                $this->Bulan_model->add($param);
+              } else {
+                $this->session->set_flashdata('failed', ' Duplikat Data');
+                redirect('manage/payment/view_bulan/' . $id);
+              }
             }
           }
         }
@@ -307,12 +312,15 @@ class Payment_set extends CI_Controller
       $data['payment'] = $this->Payment_model->get(array('id' => $id));
       $data['month'] = $this->Bulan_model->get_month();
       $data['title'] = 'Tambah Tarif Pembayaran';
+      if($edit){
+          $data['title'] = 'Edit Tarif Pembayaran';
+      }
       $data['main'] = 'payment/payment_add_bulan';
       $this->load->view('manage/layout', $data);
     }
   }
 
-  public function add_payment_bulan_majors($id = NULL)
+  public function add_payment_bulan_majors($id = NULL, $edit = false)
   {
     if ($id == NULL) {
       redirect('manage/payment');
@@ -344,13 +352,18 @@ class Payment_set extends CI_Controller
             $param['bulan_last_update'] = date('Y-m-d H:i:s');
             $param['payment_id'] = $id;
             $param['student_id'] = $row['student_id'];
-
-            if (count($check) == 0) {
-
+            $param['ModeEdit'] = $edit;
+            
+            if($edit){
               $this->Bulan_model->add($param);
-            } else {
-              $this->session->set_flashdata('failed', ' Duplikat Data');
-              redirect('manage/payment/view_bulan/' . $id);
+            }
+            else {
+              if (count($check) == 0) {
+                $this->Bulan_model->add($param);
+              } else {
+                $this->session->set_flashdata('failed', ' Duplikat Data');
+                redirect('manage/payment/view_bulan/' . $id);
+              }
             }
           }
         }
@@ -365,6 +378,9 @@ class Payment_set extends CI_Controller
       $data['payment'] = $this->Payment_model->get(array('id' => $id));
       $data['month'] = $this->Bulan_model->get_month();
       $data['title'] = 'Tambah Tarif Pembayaran';
+      if($edit){
+        $data['title'] = 'Edit Tarif Pembayaran';
+      }
       $data['main'] = 'payment/payment_add_bulan_majors';
       $this->load->view('manage/layout', $data);
     }
@@ -468,7 +484,7 @@ class Payment_set extends CI_Controller
     }
   }
 
-  public function add_payment_bebas($id = NULL)
+  public function add_payment_bebas($id = NULL, $edit = false)
   {
     if ($id == NULL) {
       redirect('manage/payment');
@@ -487,13 +503,19 @@ class Payment_set extends CI_Controller
           $param['bebas_last_update'] = date('Y-m-d H:i:s');
           $param['payment_id'] = $id;
           $param['student_id'] = $row['student_id'];
-
-          if (count($check) == 0) {
-
+          $param['ModeEdit'] = $edit;
+            
+          if($edit){
             $this->Bebas_model->add($param);
-          } else {
-            $this->session->set_flashdata('failed', ' Duplikat Data');
-            redirect('manage/payment/view_bebas/' . $id);
+          }
+          else {
+            if (count($check) == 0) {
+
+              $this->Bebas_model->add($param);
+            } else {
+              $this->session->set_flashdata('failed', ' Duplikat Data');
+              redirect('manage/payment/view_bebas/' . $id);
+            }
           }
         }
       }
@@ -505,12 +527,15 @@ class Payment_set extends CI_Controller
       $data['class'] = $this->Student_model->get_class();
       $data['payment'] = $this->Payment_model->get(array('id' => $id));
       $data['title'] = 'Tambah Tarif Pembayaran';
+      if($edit){
+        $data['title'] = 'Edit Tarif Pembayaran';
+      }
       $data['main'] = 'payment/payment_add_bebas';
       $this->load->view('manage/layout', $data);
     }
   }
 
-  public function add_payment_bebas_majors($id = NULL)
+  public function add_payment_bebas_majors($id = NULL, $edit = false)
   {
     if ($id == NULL) {
       redirect('manage/payment');
@@ -533,13 +558,19 @@ class Payment_set extends CI_Controller
           $param['bebas_last_update'] = date('Y-m-d H:i:s');
           $param['payment_id'] = $id;
           $param['student_id'] = $row['student_id'];
-
-          if (count($check) == 0) {
-
+          $param['ModeEdit'] = $edit;
+            
+          if($edit){
             $this->Bebas_model->add($param);
-          } else {
-            $this->session->set_flashdata('failed', ' Duplikat Data');
-            redirect('manage/payment/view_bebas/' . $id);
+          }
+          else {
+            if (count($check) == 0) {
+
+              $this->Bebas_model->add($param);
+            } else {
+              $this->session->set_flashdata('failed', ' Duplikat Data');
+              redirect('manage/payment/view_bebas/' . $id);
+            }
           }
         }
       }
@@ -552,6 +583,9 @@ class Payment_set extends CI_Controller
       $data['class'] = $this->Student_model->get_class();
       $data['payment'] = $this->Payment_model->get(array('id' => $id));
       $data['title'] = 'Tambah Tarif Pembayaran';
+      if($edit){
+        $data['title'] = 'Edit Tarif Pembayaran';
+      }
       $data['main'] = 'payment/payment_add_bebas_majors';
       $this->load->view('manage/layout', $data);
     }

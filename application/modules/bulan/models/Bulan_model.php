@@ -263,13 +263,22 @@ class Bulan_model extends CI_Model
             $this->db->set('bulan_last_update', $data['bulan_last_update']);
         }
 
-        if (isset($data['bulan_id'])) {
-            $this->db->where('bulan_id', $data['bulan_id']);
+        if ($data['ModeEdit']) {
+            $this->db->where('student_student_id', $data['student_id']);
+            $this->db->where('bulan_status', 0);
             $this->db->update('bulan');
-            $id = $data['bulan_id'];
-        } else {
-            $this->db->insert('bulan');
-            $id = $this->db->insert_id();
+            $id = $data['student_id'];
+        }
+        else{
+            if (isset($data['bulan_id'])) {
+                $this->db->where('bulan_id', $data['bulan_id']);
+                $this->db->where('bulan_status', 0);
+                $this->db->update('bulan');
+                $id = $data['bulan_id'];
+            } else {
+                $this->db->insert('bulan');
+                $id = $this->db->insert_id();
+            }
         }
 
         $status = $this->db->affected_rows();
