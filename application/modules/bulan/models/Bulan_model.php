@@ -265,6 +265,7 @@ class Bulan_model extends CI_Model
 
         if ($data['ModeEdit']) {
             $this->db->where('student_student_id', $data['student_id']);
+            $this->db->where('month_month_id', $data['month_id']);
             $this->db->where('bulan_status', 0);
             $this->db->update('bulan');
             $id = $data['student_id'];

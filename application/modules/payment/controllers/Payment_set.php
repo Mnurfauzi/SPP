@@ -234,7 +234,7 @@ class Payment_set extends CI_Controller
           $param['bulan_last_update'] = date('Y-m-d H:i:s');
           $param['payment_id'] = $id;
           $param['student_id'] = $StudID;
-
+          $param['ModeEdit'] = false;
           if (count($check) == 0) {
 
             $this->Bulan_model->add($param);
@@ -402,7 +402,7 @@ class Payment_set extends CI_Controller
         $param['bulan_id'] = $bulan_id[$i];
         $param['bulan_bill'] = $title[$i];
         $param['bulan_last_update'] = date('Y-m-d H:i:s');
-
+        $param['ModeEdit'] = false;
         $this->Bulan_model->add($param);
       }
 
@@ -461,7 +461,7 @@ class Payment_set extends CI_Controller
           $param['bebas_last_update'] = date('Y-m-d H:i:s');
           $param['payment_id'] = $id;
           $param['student_id'] = $StudID;
-
+          $param['ModeEdit'] = false;
           if (count($check) == 0) {
 
             $this->Bebas_model->add($param);
@@ -602,6 +602,7 @@ class Payment_set extends CI_Controller
       $param['bebas_id'] = $bebas_id;
       $param['bebas_bill'] = $this->input->post('bebas_bill');
       $param['bulan_last_update'] = date('Y-m-d H:i:s');
+      $param['ModeEdit'] = false;
 
       $this->Bebas_model->add($param);
 

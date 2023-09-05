@@ -19,9 +19,7 @@
               <div class="form-group">
                 <label class="control-label">Tingkat Sekolah</label>
                 <select name="setting_level" class="form-control">
-                  <option value="primary" <?php echo ($setting_level['setting_value'] == 'primary') ? 'selected' : '' ?>>SD/MI</option>
-                  <option value="junior" <?php echo ($setting_level['setting_value'] == 'junior') ? 'selected' : '' ?>>SMP/MTS</option>
-                  <option value="senior" <?php echo ($setting_level['setting_value'] == 'senior') ? 'selected' : '' ?>>SMK/SMA/MA</option>
+                  <option value="senior" <?php echo ($setting_level['setting_value'] == 'senior') ? 'selected' : '' ?>>SD/MI</option>
                 </select>
               </div>
               <div class="form-group">
