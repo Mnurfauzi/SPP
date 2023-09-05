@@ -66,7 +66,7 @@
 												<td width="4">:</td>
 												<?php foreach ($period as $row) : ?>
 													<?php echo (isset($f['n']) and $f['n'] == $row['period_id']) ?
-														'<td><strong>' . $row['period_start'] . '/' . $row['period_start'] . '<strong></td>' : '' ?>
+														'<td><strong>' . $row['period_start'] . '/' . $row['period_end'] . '<strong></td>' : '' ?>
 												<?php endforeach; ?>
 											</tr>
 											<tr>
