@@ -582,6 +582,11 @@ class Payout_set extends CI_Controller
 
     $this->Bebas_pay_model->delete($id);
 
+    //Update Saldo Siswa
+    $xs['student_id'] = $student_id;
+    $xs['SaldoBebas'] = $total_pay['bebas_pay_bill'];
+    $this->Student_model->add($xs);
+
     if ($this->input->is_ajax_request()) {
       // echo $status;
     } else {

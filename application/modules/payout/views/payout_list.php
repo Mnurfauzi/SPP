@@ -226,7 +226,7 @@
 																<td class="<?php echo ($key['bulan_status'] == 1) ? 'success' : 'danger' ?> text-center">
 																		<?php if ($key['bulan_status'] == 1) { ?> 
 																			
-																		<?php } else if ($SaldoBulanan - $key['bulan_bill'] > 0) { ?> 
+																		<?php } else if ($SaldoBulanan - $key['bulan_bill'] >= 0) { ?> 
 																			<?php $SaldoBulanan = $SaldoBulanan - $key['bulan_bill']; $firstbayar++; ?>
 																			<?php if ($firstbayar == 1) { ?> 
 																				<p onclick="window.location='<?php echo site_url('manage/payout/pay/' . $key['payment_payment_id'] . '/' . $row['student_student_id'] . '/' . $key['bulan_id']) ?>';" class="btn btn-success btn-xs pull-right"><i class="fa fa-save"></i> Konfirmasi</button>
@@ -304,7 +304,7 @@
 																		<div class="row">
 																			<div class="col-md-6">
 																				<label>Jumlah Bayar *</label>
-																				<input type="text" required="" name="bebas_pay_bill" class="form-control numeric" placeholder="Jumlah Bayar" value ="<?php echo $SaldoBebas ?>" readonly>
+																				<input type="text" required="" name="bebas_pay_bill" class="form-control numeric" placeholder="Jumlah Bayar" value ="<?php echo ($sisa <= $SaldoBebas ? $sisa : $SaldoBebas) ?>" readonly>
 																			</div>
 																			<div class="col-md-6">
 																				<label>Keterangan *</label>
