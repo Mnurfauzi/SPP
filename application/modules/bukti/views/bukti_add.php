@@ -5,6 +5,7 @@ if (isset($payment)) {
 	$inputPeriodValue = $payment['period_period_id'];
 	$inputPosValue = $payment['pos_pos_id'];
 	$inputNilaiValue = $payment['nilai'];
+	$inputNilaiBebasValue = $payment['nilaiBebas'];
 	$inputBuktiFoto = $payment['upload_image'];
 	$inputStudentValue = $payment['student_id'];
 	$inputdescriptionValue = $payment['description'];
@@ -12,6 +13,7 @@ if (isset($payment)) {
 	$inputPeriodValue = set_value('period_id');
 	$inputPosValue = set_value('pos_id');
 	$inputNilaiValue = set_value('nilai');
+	$inputNilaiBebasValue = set_value('nilaiBebas');
 	$inputBuktiFoto = set_value('image');
 	$inputStudentValue = set_value('idStudent');
 	if($userRole == 3){
@@ -62,10 +64,10 @@ if (isset($payment)) {
 
 						<div class="form-group">
 							<label>Nama Pembayaran <small data-toggle="tooltip" title="Wajib diisi">*</small></label>
-							<select name="pos_id" class="form-control">
-								<option value="">-Pilih Nama Pembayaran-</option>
+							<select id="pos_id" name="pos_id" class="form-control" onChange="changetextbox();">
+								<option value="">- Semua Nama Pembayaran -</option>
 								<?php foreach ($pos as $row) : ?>
-									<option value="<?php echo $row['pos_id']; ?>" <?php echo ($inputPosValue == $row['pos_id']) ? 'selected' : '' ?>><?php echo $row['pos_name']; ?></option>
+									<option value="<?php echo $row['pos_pos_id'] .'-'. $row['payment_type']; ?>" <?php echo ($inputPosValue == $row['pos_pos_id']) ? 'selected' : '' ?>><?php echo $row['pos_name'] .' - '. $row['payment_type']; ?></option>
 								<?php endforeach; ?>
 							</select>
 						</div>
@@ -81,8 +83,12 @@ if (isset($payment)) {
 						</div>
 
 						<div class="form-group">
-							<label>Total Bayar <small data-toggle="tooltip" title="Wajib diisi">*</small></label>
+							<label>Total Bayar Tagihan Bulanan <small data-toggle="tooltip" title="Wajib diisi">*</small></label>
 							<input name="nilai" type="text" id="allTarif"  class="form-control numeric" value="<?php echo $inputNilaiValue; ?>">
+						</div>
+						<div class="form-group">
+							<label>Total Bayar Tagihan Bebas <small data-toggle="tooltip" title="Wajib diisi">*</small></label>
+							<input name="nilaiBebas" type="text" id="allTarifBebas"  class="form-control numeric" value="<?php echo $inputNilaiBebasValue; ?>">
 						</div>
 
 						<div class="form-group">
@@ -154,4 +160,28 @@ if (isset($payment)) {
 	function getId(id) {
 		$('#paymentId').val(id)
 	}
+</script>
+<script type="text/javascript">
+$(document).ready(function () {
+	changetextbox();
+});
+
+function changetextbox()
+{
+    if (document.getElementById("pos_id").value != '') {
+		if(document.getElementById("pos_id").value.match(/^.*BEBAS$/))
+		{
+			document.getElementById("allTarif").disabled=false;
+			document.getElementById("allTarifBebas").disabled=true;
+		}
+		else if(document.getElementById("pos_id").value.match(/^.*BULAN$/))
+		{
+			document.getElementById("allTarif").disabled=true;
+			document.getElementById("allTarifBebas").disabled=false;
+		}
+    } else {
+        document.getElementById("allTarif").disabled=false;
+		document.getElementById("allTarifBebas").disabled=false;
+    }
+}
 </script>

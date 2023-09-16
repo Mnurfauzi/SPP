@@ -54,13 +54,21 @@ class Bukti_set extends CI_Controller
 
   public function Approve($id = NULL) 
   {
-      $update_data = array('status'=> 1);
-      $where = array('id' => $id);
-      $res = $this->db->update('buktibayar',$update_data,$where);
-      if ($res >= 1) {
-        $this->session->set_flashdata('success', ' Bukti Bayar Di Approve');
-        $this->index();
-      }
+    $where = array('id' => $id);
+    $pay = $this->Bukti_model->get($where);
+    //Update Saldo Siswa
+    $params['student_id'] = $pay['student_student_id'];
+    $params['SaldoBulanan'] = $pay['nilai'];
+    $params['SaldoBebas'] = $pay['nilaiBebas'];
+    $this->Student_model->add($params);
+
+    $update_data = array('status'=> 1);
+    $where = array('id' => $id);
+    $res = $this->db->update('buktibayar',$update_data,$where);
+    if ($res >= 1) {
+      $this->session->set_flashdata('success', ' Bukti Bayar Di Approve');
+      $this->index();
+    }
   }
   public function Reject($id = NULL) 
   {
@@ -77,12 +85,12 @@ class Bukti_set extends CI_Controller
   public function add($id = NULL)
   {
     $this->load->library('form_validation');
-    $this->form_validation->set_rules('pos_id', 'Jenis Pembayaran', 'trim|required|xss_clean');
+    //$this->form_validation->set_rules('pos_id', 'Jenis Pembayaran', 'trim|required|xss_clean');
     $this->form_validation->set_rules('period_id', 'Tahun Pelajaran', 'trim|required|xss_clean');
     if($this->session->userdata('uroleid') <> 3){
       $this->form_validation->set_rules('student_id', 'Nama Siswa', 'trim|required|xss_clean');
     }
-    $this->form_validation->set_rules('nilai', 'Total Bayar', 'trim|required|xss_clean');
+    //$this->form_validation->set_rules('nilai', 'Total Bayar', 'trim|required|xss_clean');
     $this->form_validation->set_rules('description', 'Keterangan', 'trim|required|xss_clean');
     $this->form_validation->set_error_delimiters('<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>', '</div>');
     $data['operation'] = is_null($id) ? 'Tambah' : 'Edit';
@@ -105,8 +113,11 @@ class Bukti_set extends CI_Controller
 
       $params['period_id'] = $this->input->post('period_id');
       $params['student_id'] = $userRole == 3 ? $this->input->post('GetStudentIDs') : $this->input->post('student_id');
-      $params['pos_id'] = $this->input->post('pos_id');
+      $posid = str_replace("BULANAN", "",$this->input->post('pos_id'));
+      $posid = str_replace("BEBAS", "",$this->input->post('pos_id'));
+      $params['pos_id'] = $posid;
       $params['nilai'] = $this->input->post('nilai');
+      $params['nilaiBebas'] = $this->input->post('nilaiBebas');
       $params['description'] = $this->input->post('description');
       
       if (!empty($_FILES['image']['name'])) {
@@ -140,7 +151,7 @@ class Bukti_set extends CI_Controller
         $data['payment'] = $this->Bukti_model->get(array('id' => $id));
       }
       $data['period'] = $this->Period_model->get();
-      $data['pos'] = $this->Pos_model->get();
+      $data['pos'] = $this->Payment_model->get();
 
       $paramstudent = array();
       // Nip

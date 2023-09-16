@@ -67,6 +67,7 @@ class Bukti_model extends CI_Model
         $this->db->join('period', 'period.period_id = buktibayar.period_period_id', 'left');
         $this->db->join('pos', 'pos.pos_id = buktibayar.pos_pos_id', 'left');
         $this->db->join('student', 'student.student_id = buktibayar.student_student_id', 'left');
+        $this->db->join('payment', 'buktibayar.pos_pos_id = payment.pos_pos_id', 'left');
         $res = $this->db->get('buktibayar');
 
         if (isset($params['id'])) {
@@ -85,6 +86,10 @@ class Bukti_model extends CI_Model
 
         if (isset($data['nilai'])) {
             $this->db->set('nilai', $data['nilai']);
+        }
+
+        if (isset($data['nilaiBebas'])) {
+            $this->db->set('nilaiBebas', $data['nilaiBebas']);
         }
 
         if (isset($data['upload_image'])) {

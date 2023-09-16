@@ -45,8 +45,8 @@
 								?>
 										<tr>
 											<td><?php echo $row['student_full_name']; ?></td>
-											<td><?php echo 'Rp.'.number_format($row['nilai'], 0, ',', '.'); ?></td>
-											<td><?php echo $row['pos_name'] . ' - T.P ' . $row['period_start'] . '/' . $row['period_end']; ?></td>
+											<td><?php echo 'Rp.'.number_format($row['nilai'] + $row['nilaiBebas'], 0, ',', '.'); ?></td>
+											<td><?php echo ($row['pos_name'] > 0 ? $row['pos_name'] : 'Semua Pembayaran') . ' - T.P ' . $row['period_start'] . '/' . $row['period_end']; ?></td>
 											<td><?php echo $row['description']; ?></td>
 											<td>
 												<?php switch ($row['status']) {
