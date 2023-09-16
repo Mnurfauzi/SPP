@@ -72,6 +72,7 @@
 														<a href="<?php echo site_url('manage/student/edit/' . $row['student_id']) ?>" class="btn btn-xs btn-warning" data-toggle="tooltip" title="Edit"><i class="fa fa-edit"></i></a>
 													<?php } ?>
 													<a href="<?php echo site_url('manage/student/printPdf/' . $row['student_id']) ?>" class="btn btn-success btn-xs view-pdf" data-toggle="tooltip" title="Cetak Kartu"><i class="fa fa-print"></i></a>
+													<a href="<?php echo site_url('manage/student/tukarsaldo/' . $row['student_id']) ?>" class="btn btn-info btn-xs" data-toggle="tooltip" title="Saldo"><i class="fa fa-money"></i></a>
 												</td>
 											</tr>
 										<?php

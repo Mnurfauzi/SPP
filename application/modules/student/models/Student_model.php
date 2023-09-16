@@ -267,6 +267,14 @@ class Student_model extends CI_Model
             $this->db->set('student_last_update', $data['student_last_update']);
         }
 
+        if (isset($data['SaldoBulananTukar'])) {
+            $this->db->set('SaldoBulanan', $data['SaldoBulananTukar']);
+        }
+
+        if (isset($data['SaldoBebasTukar'])) {
+            $this->db->set('SaldoBebas', $data['SaldoBebasTukar']);
+        }
+
         if (isset($data['SaldoBulanan'])) {
             $this->db->set('SaldoBulanan', 'SaldoBulanan + ' . $data['SaldoBulanan'], FALSE);
         }

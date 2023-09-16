@@ -191,6 +191,68 @@ class Student_set extends CI_Controller
     }
   }
 
+  //
+  public function tukarsaldo($id = NULL)
+  {
+
+    $list_access = array(SUPERUSER);
+    if (!in_array($this->session->userdata('uroleid'), $list_access)) {
+      redirect('manage');
+    }
+    $data['operation'] = is_null($id) ? 'Tambah' : 'Tukar Saldo ';
+
+    if ($_POST) {
+
+      $SaldoBulanan = $this->input->post('SaldoBulanan');
+      $SaldoBebas = $this->input->post('SaldoBebas');
+      $SaldoTotal = $this->input->post('SaldoTotal');
+      if(($SaldoBulanan + $SaldoBebas) != $SaldoTotal){
+        $this->session->set_flashdata('failed', 'Saldo Tidak Balance');
+        redirect('manage/student/tukarsaldo/' . $this->input->post('student_id'));
+      }
+      $params['student_id'] = $id;
+      $params['SaldoBulananTukar'] = $SaldoBulanan;
+      $params['SaldoBebasTukar'] = $SaldoBebas;
+      $this->Student_model->add($params);
+
+      // activity log
+      $this->load->model('logs/Logs_model');
+      $this->Logs_model->add(
+        array(
+          'log_date' => date('Y-m-d H:i:s'),
+          'user_id' => $this->session->userdata('uid'),
+          'log_module' => 'Student',
+          'log_action' => $data['operation'],
+          'log_info' => 'ID:' . $status . ';Name:' . $this->input->post('student_full_name')
+        )
+      );
+
+      $this->session->set_flashdata('success', $data['operation'] . ' Siswa Berhasil');
+      redirect('manage/student');
+    } else {
+      if ($this->input->post('student_id')) {
+        redirect('manage/student/edit/' . $this->input->post('student_id'));
+      }
+
+      // Edit mode
+      if (!is_null($id)) {
+        $object = $this->Student_model->get(array('id' => $id));
+        if ($object == NULL) {
+          redirect('manage/student');
+        } else {
+          $data['student'] = $object;
+        }
+      }
+      $data['setting_level'] = $this->Setting_model->get(array('id' => 7));
+      $data['ngapp'] = 'ng-app="classApp"';
+      $data['class'] = $this->Student_model->get_class();
+      $data['majors'] = $this->Student_model->get_majors();
+      $data['title'] = $data['operation'] . ' Siswa';
+      $data['main'] = 'student/student_saldo';
+      $this->load->view('manage/layout', $data);
+    }
+  }
+
   // Class view in list
   public function clasess($offset = NULL)
   {
