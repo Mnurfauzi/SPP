@@ -178,9 +178,15 @@
 									<?php } ?>
 										<h3>Rekap Transaksi Siswa</h3>
 									</div>
+									<?php foreach ($siswa as $row) : ?>
+										<?php if(isset($f['n']) and $f['r'] == $row['student_nis']) { 
+											$SaldoBulanan = $row['SaldoBulanan']; $SaldoBebas = $row['SaldoBebas'];
+										}?>
+									<?php endforeach; ?>
 									
 									<div class="col-md-6">
 										<h2>Bulanan</h2>
+										<h3>Saldo : <?php echo number_format($SaldoBulanan, 0, ',', '.') ?></h3> 
 										<table class="table table-bordered table-responsive" style="white-space: nowrap;">
 											<thead>
 												<tr class="success">
@@ -198,7 +204,7 @@
 												$i = 1;
 												foreach ($student as $row) : if ($f['n'] and $f['r'] == $row['student_nis'] ) {
 												?>
-														<?php $Payid = 0; foreach ($bulan as $key) : ?>
+														<?php $Payid = 0; $firstbayar = 0; foreach ($bulan as $key) : ?>
 															<?php if (isset($f['n']) and $f['n'] == $key['period_period_id']) {?>
 															<?php if ($Payid != $key['payment_payment_id']) {?>
 															<tr>
@@ -219,9 +225,12 @@
 																<?php if ($this->session->userdata('uroleid') <> USER) {?>
 																<td class="<?php echo ($key['bulan_status'] == 1) ? 'success' : 'danger' ?> text-center">
 																		<?php if ($key['bulan_status'] == 1) { ?> 
-																			<button onclick="window.location='<?php echo site_url('manage/payout/not_pay/' . $key['payment_payment_id'] . '/' . $key['student_student_id'] . '/' . $key['bulan_id']) ?>';" class="btn btn-danger btn-xs pull-right"><i class="fa fa-trash"></i> Hapus</button>
-																		<?php } else { ?> 
-																			<button onclick="window.location='<?php echo site_url('manage/payout/pay/' . $key['payment_payment_id'] . '/' . $row['student_student_id'] . '/' . $key['bulan_id']) ?>';"  onclick="return confirm('Anda Akan Melakukan Pembayaran bulan ' . $key['month_name'] . '?')" class="btn btn-success btn-xs pull-right"><i class="fa fa-save"></i> Konfirmasi</button>
+																			
+																		<?php } else if ($SaldoBulanan - $key['bulan_bill'] > 0) { ?> 
+																			<?php $SaldoBulanan = $SaldoBulanan - $key['bulan_bill']; $firstbayar++; ?>
+																			<?php if ($firstbayar == 1) { ?> 
+																				<p onclick="window.location='<?php echo site_url('manage/payout/pay/' . $key['payment_payment_id'] . '/' . $row['student_student_id'] . '/' . $key['bulan_id']) ?>';" class="btn btn-success btn-xs pull-right"><i class="fa fa-save"></i> Konfirmasi</button>
+																			<?php } else echo "<label class='btn btn-info btn-xs pull-right'> Pending </label>" ?>
 																		<?php } ?>
 																</td>
 																<?php }?>
@@ -237,6 +246,7 @@
 									</div>
 									<div class="col-md-6">
 										<h2>Bebas</h2>
+										<h3>Saldo : <?php echo number_format($SaldoBebas, 0, ',', '.') ?></h3>
 										<table class="table table-hover table-responsive table-bordered" style="white-space: nowrap;">
 											<thead>
 												<tr class="success">
@@ -294,7 +304,7 @@
 																		<div class="row">
 																			<div class="col-md-6">
 																				<label>Jumlah Bayar *</label>
-																				<input type="text" required="" name="bebas_pay_bill" class="form-control numeric" placeholder="Jumlah Bayar">
+																				<input type="text" required="" name="bebas_pay_bill" class="form-control numeric" placeholder="Jumlah Bayar" value ="<?php echo $SaldoBebas ?>" readonly>
 																			</div>
 																			<div class="col-md-6">
 																				<label>Keterangan *</label>

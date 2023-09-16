@@ -351,7 +351,13 @@ class Payout_set extends CI_Controller
           'log_trx_last_update' => date('Y-m-d H:i:s'),
         );
         $this->Log_trx_model->add($log);
+
+        //Update Saldo Siswa
+        $xs['student_id'] = $this->input->post('student_student_id');
+        $xs['SaldoBebas'] = -$this->input->post('bebas_pay_bill');
+        $this->Student_model->add($xs);
       }
+
       $this->session->set_flashdata('success', ' Pembayaran Tagihan berhasil');
       redirect('manage/payout?n=' . $student['period_period_id'] . '&r=' . $student['student_nis']);
     } else {
@@ -418,6 +424,11 @@ class Payout_set extends CI_Controller
     $status = $this->Bulan_model->add($pay);
     $this->Log_trx_model->add($log);
 
+    //Update Saldo Siswa
+    $params['student_id'] = $student_id;
+    $params['SaldoBulanan'] = -$student['bulan_bill'];
+    $this->Student_model->add($params);
+
     if ($activated['setting_value'] == 'Y') {
 
       $userkey = $user['setting_value'];
@@ -455,6 +466,12 @@ class Payout_set extends CI_Controller
     ));
 
     $this->Bulan_model->add($pay);
+
+    //Update Saldo Siswa
+    $params['student_id'] = $student_id;
+    $params['SaldoBulanan'] = $student['bulan_bill'];
+    $this->Student_model->add($params);
+
     if ($this->input->is_ajax_request()) {
       // echo $status;
     } else {
